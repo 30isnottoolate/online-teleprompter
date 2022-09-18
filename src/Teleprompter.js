@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Teleprompter.css';
+import Controller from './Controller.js';
 
 function Teleprompter() {
   const [isActive, setIsActive] = useState(false);
@@ -10,11 +11,7 @@ function Teleprompter() {
 
   return (
     <div id="teleprompter">
-      <div id="controller">
-        <input type="range" id="font-size" min="80" max="150" step="1" value={fontSize} />
-        <input type="range" id="line-height" min="1" max="1.5" step="0.01" value={lineHeight} />
-        <input type="range" id="text-speed" min="20" max="200" step="1" value={textSpeed} />
-      </div>
+      <Controller font={fontSize} height={lineHeight} speed={textSpeed}/>
       <div id="text-slider">
         <textarea id="text-container" value={text} />
       </div>
