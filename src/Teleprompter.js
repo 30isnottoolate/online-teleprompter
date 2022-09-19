@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Teleprompter.css';
 import Controller from './Controller.js';
-import Slider from '../Slider';
+import Slider from './Slider';
 
 function Teleprompter() {
   const [isActive, setIsActive] = useState(false);
