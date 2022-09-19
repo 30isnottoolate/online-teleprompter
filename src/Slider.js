@@ -6,7 +6,7 @@ const Slider = (props) => {
   }
 
   return (
-    <div id="text-slider">
+    <div id="text-slider" style={{position: "absolute", top: props.position}}>
       <textarea id="text-container" value={props.text} onChange={handleTextChange} />
     </div>
   );
