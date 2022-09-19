@@ -11,9 +11,9 @@ function Teleprompter() {
 
   return (
     <div id="teleprompter">
-      <Controller font={fontSize} height={lineHeight} speed={textSpeed}/>
+      <Controller font={fontSize} setFontSize={setFontSize} height={lineHeight} setLineHeight={setLineHeight} speed={textSpeed} setTextSpeed={setTextSpeed} />
       <div id="text-slider">
-        <textarea id="text-container" value={text} />
+        <textarea id="text-container" value={text} onChange={setText} />
       </div>
     </div>
   );
