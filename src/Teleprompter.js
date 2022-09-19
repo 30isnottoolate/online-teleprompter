@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Teleprompter.css';
 import Controller from './Controller.js';
+import Slider from '../Slider';
 
 function Teleprompter() {
   const [isActive, setIsActive] = useState(false);
@@ -12,9 +13,7 @@ function Teleprompter() {
   return (
     <div id="teleprompter">
       <Controller font={fontSize} setFontSize={setFontSize} height={lineHeight} setLineHeight={setLineHeight} speed={textSpeed} setTextSpeed={setTextSpeed} />
-      <div id="text-slider">
-        <textarea id="text-container" value={text} onChange={setText} />
-      </div>
+      <Slider text={text} setText={setText} />
     </div>
   );
 }
