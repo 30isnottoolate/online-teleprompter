@@ -15,12 +15,6 @@ const Teleprompter = () => {
     isActive ? setIsActive(false) : setIsActive(true);
   }
 
-  const changePosition = () => {
-    if (isActive) {
-      setTimeout(() => setPosition(position), 1000)
-    }
-  }
-
   useEffect(() => {
     let intervalID = null;
 
