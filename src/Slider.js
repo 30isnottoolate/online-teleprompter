@@ -7,14 +7,11 @@ const Slider = (props) => {
 
     return (
         <div id="text-slider" style={{ position: "absolute", top: props.position }}>
-            <div 
+            <textarea 
                 id="text-container" 
-                style={{ fontSize: props.fontSize + "px", lineHeight: props.lineHeight }} 
-                contentEditable="true" 
-                value={props.text} 
-                onChange={handleTextChange} >
-                    {props.text}
-            </div>
+                style={{ fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
+                value={props.text}
+                onChange={handleTextChange} />
         </div>
     );
 }
