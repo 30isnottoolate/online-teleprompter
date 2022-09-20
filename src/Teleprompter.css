@@ -1,11 +1,22 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: auto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: auto;
 }
 
 body {
-  user-select: none;
-  background-color: #ffffff;
-  color: #000000;
+    user-select: none;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#text-slider {
+    position: "absolute"
+}
+
+#text-container {
+    width: 100vw;
+    height: auto;
+    overflow: hidden;
+    border: 0px;
 }
