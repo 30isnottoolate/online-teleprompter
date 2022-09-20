@@ -29,15 +29,14 @@ const Teleprompter = () => {
     return (
         <div id="teleprompter">
             <Controller
-                font={fontSize} setFontSize={setFontSize}
-                height={lineHeight} setLineHeight={setLineHeight}
-                speed={textSpeed} setTextSpeed={setTextSpeed} />
+                fontSize={fontSize} setFontSize={setFontSize}
+                lineHeight={lineHeight} setLineHeight={setLineHeight}
+                textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
             <Slider
                 text={text} setText={setText}
                 position={position}
                 fontSize={fontSize}
-                lineHeight={lineHeight}
-                textSpeed={textSpeed} />
+                lineHeight={lineHeight} />
             <button onClick={changeStatus} >{isActive ? "Stop" : "Start"}</button>
         </div>
     );
