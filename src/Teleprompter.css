@@ -15,12 +15,15 @@ body {
 }
 
 #text-slider {
-    position: "absolute"
+    z-index: -1
 }
 
 #text-container {
     width: 100vw;
     height: auto;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     overflow: hidden;
     border: 0px;
 }
