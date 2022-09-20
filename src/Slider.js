@@ -6,12 +6,15 @@ const Slider = (props) => {
     }
 
     return (
-        <div id="text-slider" style={{ position: "absolute", top: props.position }}>
+        <div id="text-slider">
             <textarea 
                 id="text-container" 
-                style={{ fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
+                style={{ position: "absolute", top: props.position, fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
                 value={props.text}
                 onChange={handleTextChange} />
+            <p id ="text-display" style={{ position: "absolute", top: (props.position + 2), left: "2px", fontSize: props.fontSize + "px", lineHeight: props.lineHeight}}>
+                {props.text}
+            </p>
         </div>
     );
 }
