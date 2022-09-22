@@ -11,10 +11,6 @@ const Teleprompter = () => {
     const [lineHeight, setLineHeight] = useState(1.2);
     const [textSpeed, setTextSpeed] = useState(100);
 
-    const changeStatus = () => {
-        isActive ? setIsActive(false) : setIsActive(true);
-    }
-
     useEffect(() => {
         let intervalID = null;
 
