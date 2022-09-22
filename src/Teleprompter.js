@@ -29,6 +29,7 @@ const Teleprompter = () => {
     return (
         <div id="teleprompter">
             <Controller
+                isActive={isActive} setIsActive={setIsActive}
                 fontSize={fontSize} setFontSize={setFontSize}
                 lineHeight={lineHeight} setLineHeight={setLineHeight}
                 textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
@@ -37,7 +38,6 @@ const Teleprompter = () => {
                 position={position}
                 fontSize={fontSize}
                 lineHeight={lineHeight} />
-            <button onClick={changeStatus} >{isActive ? "Stop" : "Start"}</button>
         </div>
     );
 }
