@@ -5,6 +5,7 @@ import Slider from './Slider';
 
 const Teleprompter = () => {
     const [isActive, setIsActive] = useState(false);
+    const [mode, setMode] = useState("read");
     const [position, setPosition] = useState(100);
     const [text, setText] = useState("Default text.")
     const [fontSize, setFontSize] = useState(100);
