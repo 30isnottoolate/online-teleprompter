@@ -14,8 +14,14 @@ body {
     overflow: hidden;
 }
 
+#controller {
+    position: fixed;
+    height: 15vh;
+}
+
 #text-slider {
-    z-index: -1
+    z-index: -1;
+    height: 85vh;
 }
 
 #text-container, #text-display {
