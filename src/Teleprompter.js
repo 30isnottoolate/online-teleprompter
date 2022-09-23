@@ -27,6 +27,7 @@ const Teleprompter = () => {
         <div id="teleprompter">
             <Controller
                 isActive={isActive} setIsActive={setIsActive}
+                mode={mode} setMode={setMode}
                 fontSize={fontSize} setFontSize={setFontSize}
                 lineHeight={lineHeight} setLineHeight={setLineHeight}
                 textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
