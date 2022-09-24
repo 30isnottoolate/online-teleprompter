@@ -24,7 +24,6 @@ body {
 }
 
 #text-container, #text-display {
-    width: 100vw;
     z-index: -1;
     background-color: #000000;
     color: #ffffff;
