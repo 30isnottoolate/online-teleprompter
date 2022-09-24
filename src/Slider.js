@@ -10,7 +10,7 @@ const Slider = (props) => {
             <div id="text-slider">
                 <textarea 
                     id="text-container" 
-                    style={{ position: "absolute", top: props.position, fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
+                    style={{ position: "absolute", top: "10vh", fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
                     value={props.text}
                     onChange={handleTextChange} />
             </div>
@@ -24,8 +24,6 @@ const Slider = (props) => {
             </div>
         );
     }
-
-    
 }
 
 export default Slider;
