@@ -16,7 +16,10 @@ const Controller = (props) => {
     const handleIsActive = () => {
         if (props.isActive) {
             props.setIsActive(false);
-        } else props.setIsActive(true);
+        } else {
+            props.setIsActive(true);
+            props.setMode("read");
+        }
     }
 
     const handleMode = () => {
