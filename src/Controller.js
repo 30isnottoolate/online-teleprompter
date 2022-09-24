@@ -25,7 +25,11 @@ const Controller = (props) => {
     const handleMode = () => {
         if (props.mode === "edit") {
             props.setMode("read");
-        } else props.setMode("edit");
+        } else {
+            props.setMode("edit");
+            props.setIsActive(false);
+            props.setPosition(window.innerHeight * 0.1 + props.fontSize * props.lineHeight);
+        }
     }
 
     return (
