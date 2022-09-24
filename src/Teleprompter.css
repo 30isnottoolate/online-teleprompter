@@ -19,21 +19,26 @@ body {
     color: #ffffff;
     position: fixed;
     height: 10vh;
-    width: 100vh;
-}
-
-#text-slider {
-    z-index: -1;
-    height: 90vh;
+    width: 100vw;
+    z-index: 1;
 }
 
 #text-container, #text-display {
-    z-index: -2;
     width: 100vw;
-    height: auto;
+    z-index: -1;
     background-color: #000000;
     color: #ffffff;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    overflow: hidden;
     border: 0px;
+}
+
+#text-container {
+    height: 90vh;
+    outline: none;
+    resize: none;
+}
+
+#text-display {
+    height: auto;
+    overflow: hidden;
 }
