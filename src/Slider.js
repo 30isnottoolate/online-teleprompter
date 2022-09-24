@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react';
 import './Teleprompter.css';
 
 const Slider = (props) => {
-    const textDisplayRef = useRef(null);
-
     useEffect(() => {
         props.setPosition(window.innerHeight * 0.1 + props.fontSize * props.lineHeight);
     },[]);
@@ -31,7 +29,7 @@ const Slider = (props) => {
     } else {
         return (
             <div id="text-slider">
-                <p id ="text-display" ref={textDisplayRef} 
+                <pre id ="text-display"
                     style={{ 
                         left: (props.fontSize * 0.69) + 2 + "px", 
                         top: (props.position + 2), 
@@ -39,7 +37,7 @@ const Slider = (props) => {
                         fontSize: props.fontSize + "px", 
                         lineHeight: props.lineHeight}}>
                     {props.text}
-                </p>
+                </pre>
             </div>
         );
     }
