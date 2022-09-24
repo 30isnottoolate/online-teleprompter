@@ -10,7 +10,7 @@ const Slider = (props) => {
             <div id="text-slider">
                 <textarea 
                     id="text-container" 
-                    style={{ fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
+                    style={{ left: (props.fontSize * 0.69) + "px", width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
                     value={props.text}
                     onChange={handleTextChange} />
             </div>
@@ -18,7 +18,7 @@ const Slider = (props) => {
     } else {
         return (
             <div id="text-slider">
-                <p id ="text-display" style={{ position: "absolute", top: (props.position + 2), left: "2px", fontSize: props.fontSize + "px", lineHeight: props.lineHeight}}>
+                <p id ="text-display" style={{ left: (props.fontSize * 0.69) + 2 + "px", top: (props.position + 2), width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, fontSize: props.fontSize + "px", lineHeight: props.lineHeight}}>
                     {props.text}
                 </p>
             </div>
