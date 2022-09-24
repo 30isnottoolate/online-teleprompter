@@ -40,6 +40,7 @@ body {
 }
 
 #text-display {
+    position: absolute;
     height: auto;
     overflow: hidden;
 }
