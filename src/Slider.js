@@ -1,6 +1,13 @@
+import { useEffect, useRef } from 'react';
 import './Teleprompter.css';
 
 const Slider = (props) => {
+    const textDisplayRef = useRef(null);
+
+    useEffect(() => {
+        props.setPosition(window.innerHeight * 0.1 + props.fontSize * props.lineHeight);
+    },[]);
+
     const handleTextChange = (e) => {
         props.setText(e.target.value);
     }
@@ -10,7 +17,13 @@ const Slider = (props) => {
             <div id="text-slider">
                 <textarea 
                     id="text-container" 
-                    style={{ left: (props.fontSize * 0.69) + "px", width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, fontSize: props.fontSize + "px", lineHeight: props.lineHeight }}
+                    style={{ 
+                        top: `calc(10vh + ${props.fontSize * props.lineHeight}px)`, 
+                        height: `calc(90vh - ${props.fontSize * props.lineHeight}px)`, 
+                        left: (props.fontSize * 0.69) + "px", 
+                        width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, 
+                        fontSize: props.fontSize + "px", 
+                        lineHeight: props.lineHeight }}
                     value={props.text}
                     onChange={handleTextChange} />
             </div>
@@ -18,7 +31,13 @@ const Slider = (props) => {
     } else {
         return (
             <div id="text-slider">
-                <p id ="text-display" style={{ left: (props.fontSize * 0.69) + 2 + "px", top: (props.position + 2), width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, fontSize: props.fontSize + "px", lineHeight: props.lineHeight}}>
+                <p id ="text-display" ref={textDisplayRef} 
+                    style={{ 
+                        left: (props.fontSize * 0.69) + 2 + "px", 
+                        top: (props.position + 2), 
+                        width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, 
+                        fontSize: props.fontSize + "px", 
+                        lineHeight: props.lineHeight}}>
                     {props.text}
                 </p>
             </div>
