@@ -34,7 +34,7 @@ const Teleprompter = () => {
             <Slider
                 mode={mode} setMode={setMode}
                 text={text} setText={setText}
-                position={position}
+                position={position} setPosition={setPosition}
                 fontSize={fontSize}
                 lineHeight={lineHeight} />
         </div>
