@@ -24,6 +24,7 @@ body {
 }
 
 #text-container, #text-display {
+    position: absolute;
     z-index: -1;
     background-color: #000000;
     color: #ffffff;
@@ -32,13 +33,11 @@ body {
 }
 
 #text-container {
-    position: absolute;
     outline: none;
     resize: none;
 }
 
 #text-display {
-    position: absolute;
     height: auto;
     overflow: hidden;
 }
