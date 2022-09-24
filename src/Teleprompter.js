@@ -28,6 +28,7 @@ const Teleprompter = () => {
             <Controller
                 isActive={isActive} setIsActive={setIsActive}
                 mode={mode} setMode={setMode}
+                position={position} set={setPosition}
                 fontSize={fontSize} setFontSize={setFontSize}
                 lineHeight={lineHeight} setLineHeight={setLineHeight}
                 textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
