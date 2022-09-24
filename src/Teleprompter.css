@@ -33,6 +33,8 @@ body {
 }
 
 #text-container {
+    position: "absolute";
+    top: "10vh";
     height: 90vh;
     outline: none;
     resize: none;
