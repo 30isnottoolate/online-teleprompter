@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect} from 'react';
 import './Teleprompter.css';
 
 const Slider = (props) => {
     useEffect(() => {
-        props.setPosition(window.innerHeight * 0.1 + props.fontSize * props.lineHeight);
-    },[]);
+        props.setPosition(window.innerHeight * 0.1);
+    },[props.fontSize, props.lineHeight, props.text]);
 
     const handleTextChange = (e) => {
         props.setText(e.target.value);
@@ -16,8 +16,8 @@ const Slider = (props) => {
                 <textarea 
                     id="text-container" 
                     style={{ 
-                        top: `calc(10vh + ${props.fontSize * props.lineHeight}px)`, 
-                        height: `calc(90vh - ${props.fontSize * props.lineHeight}px)`, 
+                        top: "10vh", 
+                        height: "90vh", 
                         left: (props.fontSize * 0.69) + "px", 
                         width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, 
                         fontSize: props.fontSize + "px", 
@@ -29,15 +29,25 @@ const Slider = (props) => {
     } else {
         return (
             <div id="text-slider">
-                <pre id ="text-display"
+                <pre 
+                    id="text-display"
+                    ref={props.textDisplayRef}
                     style={{ 
                         left: (props.fontSize * 0.69) + 2 + "px", 
                         top: (props.position + 2), 
-                        width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, 
+                        width: `calc(99vw - ${(props.fontSize * 0.69)}px)`, 
                         fontSize: props.fontSize + "px", 
                         lineHeight: props.lineHeight}}>
                     {props.text}
                 </pre>
+                <p 
+                    id="text-marker"
+                    ref={props.textMarkerRef}
+                    style={{ 
+                        left: (props.fontSize * 0.19),
+                        top: "10vh",
+                        fontSize: props.fontSize + "px",
+                        lineHeight: props.lineHeight  }}>&#129170;</p>
             </div>
         );
     }
