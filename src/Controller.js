@@ -1,18 +1,6 @@
 import './Teleprompter.css';
 
 const Controller = (props) => {
-    const handleFontSize = (e) => {
-        props.setFontSize(e.target.value);
-    }
-
-    const handleLineHeight = (e) => {
-        props.setLineHeight(e.target.value);
-    }
-
-    const handleTextSpeed = (e) => {
-        props.setTextSpeed(e.target.value);
-    }
-
     const handleIsActive = () => {
         if (props.isActive) {
             props.setIsActive(false);
@@ -37,9 +25,13 @@ const Controller = (props) => {
         props.setPosition(window.innerHeight * 0.1);
     }
 
-    const handleClear = () => {
-        props.setText("Type something...");
-    }
+    const handleClear = () => props.setText("Type something...");
+
+    const handleFontSize = (e) => props.setFontSize(e.target.value);
+
+    const handleLineHeight = (e) => props.setLineHeight(e.target.value);
+
+    const handleTextSpeed = (e) => props.setTextSpeed(e.target.value);
 
     const getLineHeight = () => (parseFloat(props.lineHeight)).toFixed(2);
 
