@@ -5,9 +5,9 @@ import Slider from './Slider';
 
 const Teleprompter = () => {
     const [isActive, setIsActive] = useState(false);
-    const [mode, setMode] = useState("read");
+    const [mode, setMode] = useState("read"); // read or edit
     const [position, setPosition] = useState(100);
-    const [text, setText] = useState("Default text.")
+    const [text, setText] = useState("Type something...");
     const [fontSize, setFontSize] = useState(100);
     const [lineHeight, setLineHeight] = useState(1.2);
     const [textSpeed, setTextSpeed] = useState(100);
@@ -25,7 +25,7 @@ const Teleprompter = () => {
             setIsActive(false);
             clearInterval(intervalID);
         }
-        
+
         return () => clearInterval(intervalID);
     }, [isActive, position, fontSize, lineHeight, textSpeed]);
 
