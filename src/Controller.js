@@ -37,6 +37,10 @@ const Controller = (props) => {
         props.setPosition(window.innerHeight * 0.1);
     }
 
+    const handleClear = () => {
+        props.setText("Type something...");
+    }
+
     return (
         <div id="controller" className={props.isActive ? "transparent" : "visible"}>
             <label htmlFor="font-size">Font size: </label>
@@ -47,6 +51,7 @@ const Controller = (props) => {
             <input type="range" id="text-speed" min="20" max="200" step="1" value={props.textSpeed} onChange={handleTextSpeed} />
             <button id="start-stop" onClick={handleIsActive} >{props.isActive ? "Stop" : "Start"}</button>
             <button id="reset" onClick={handleReset} disabled={props.mode === "edit" ? true : false}>Reset</button>
+            <button id="clear" onClick={handleClear}>Clear</button>
             <p>Current mode:</p>
             <button id="edit" onClick={handleMode}>{props.mode === "edit" ? "Edit" : "Read"}</button>
         </div>
