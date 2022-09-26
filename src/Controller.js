@@ -44,16 +44,41 @@ const Controller = (props) => {
     return (
         <div id="controller" className={props.isActive ? "transparent" : "visible"}>
             <label htmlFor="font-size">Font size: </label>
-            <input type="range" id="font-size" min="80" max="150" step="1" value={props.fontSize} onChange={handleFontSize} />
+            <input
+                id="font-size"
+                type="range" min="80" max="150" step="1"
+                value={props.fontSize}
+                onChange={handleFontSize} />
             <label htmlFor="font-size">Line height: </label>
-            <input type="range" id="line-height" min="1" max="1.5" step="0.01" value={props.lineHeight} onChange={handleLineHeight} />
+            <input
+                id="line-height"
+                type="range" min="1" max="1.5" step="0.01"
+                value={props.lineHeight}
+                onChange={handleLineHeight} />
             <label htmlFor="font-size">Text speed: </label>
-            <input type="range" id="text-speed" min="20" max="200" step="1" value={props.textSpeed} onChange={handleTextSpeed} />
-            <button id="start-stop" onClick={handleIsActive} >{props.isActive ? "Stop" : "Start"}</button>
-            <button id="reset" onClick={handleReset} disabled={props.mode === "edit" ? true : false}>Reset</button>
-            <button id="clear" onClick={handleClear}>Clear</button>
+            <input
+                id="text-speed"
+                type="range" min="20" max="200" step="1"
+                value={props.textSpeed}
+                onChange={handleTextSpeed} />
+            <button 
+                id="start-stop" 
+                onClick={handleIsActive} >
+                {props.isActive ? "Stop" : "Start"}
+            </button>
+            <button 
+                id="reset" 
+                onClick={handleReset} 
+                disabled={props.mode === "edit" ? true : false}>
+                Reset
+            </button>
+            <button id="clear" onClick={handleClear} >Clear</button>
             <p>Current mode:</p>
-            <button id="edit" onClick={handleMode}>{props.mode === "edit" ? "Edit" : "Read"}</button>
+            <button 
+                id="edit" 
+                onClick={handleMode} >
+                {props.mode === "edit" ? "Edit" : "Read"}
+            </button>
         </div>
     );
 }
