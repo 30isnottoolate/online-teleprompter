@@ -10,6 +10,11 @@ const Controller = (props) => {
         }
     }
 
+    const handleReset = () => {
+        props.setIsActive(false);
+        props.setPosition(window.innerHeight * 0.1);
+    }
+
     const handleMode = () => {
         if (props.mode === "edit") {
             props.setMode("read");
@@ -18,11 +23,6 @@ const Controller = (props) => {
             props.setIsActive(false);
             props.setPosition(window.innerHeight * 0.1);
         }
-    }
-
-    const handleReset = () => {
-        props.setIsActive(false);
-        props.setPosition(window.innerHeight * 0.1);
     }
 
     const handleDefault = () => {
@@ -43,6 +43,24 @@ const Controller = (props) => {
 
     return (
         <div id="controller" className={props.isActive ? "transparent" : "visible"}>
+            <button
+                id="start-stop"
+                onClick={handleIsActive} >
+                {props.isActive ? "Stop" : "Start"}
+            </button>
+            <button
+                id="reset"
+                onClick={handleReset}
+                disabled={props.mode === "edit" ? true : false}>
+                Reset
+            </button>
+            <button id="clear" onClick={handleClear} >Clear</button>
+            <span>Current mode:</span>
+            <button
+                id="mode"
+                onClick={handleMode} >
+                {props.mode === "edit" ? "Edit" : "Read"}
+            </button>
             <label htmlFor="font-size">Font size: </label>
             <input
                 id="font-size"
@@ -68,24 +86,6 @@ const Controller = (props) => {
                 id="default" 
                 onClick={handleDefault} >
                 Default
-            </button>
-            <button 
-                id="start-stop" 
-                onClick={handleIsActive} >
-                {props.isActive ? "Stop" : "Start"}
-            </button>
-            <button 
-                id="reset" 
-                onClick={handleReset} 
-                disabled={props.mode === "edit" ? true : false}>
-                Reset
-            </button>
-            <button id="clear" onClick={handleClear} >Clear</button>
-            <p>Current mode:</p>
-            <button 
-                id="mode" 
-                onClick={handleMode} >
-                {props.mode === "edit" ? "Edit" : "Read"}
             </button>
         </div>
     );
