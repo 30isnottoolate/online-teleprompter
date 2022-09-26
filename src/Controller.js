@@ -41,6 +41,8 @@ const Controller = (props) => {
         props.setText("Type something...");
     }
 
+    const getLineHeight = () => (parseFloat(props.lineHeight)).toFixed(2);
+
     return (
         <div id="controller" className={props.isActive ? "transparent" : "visible"}>
             <label htmlFor="font-size">Font size: </label>
@@ -56,7 +58,7 @@ const Controller = (props) => {
                 type="range" min="1" max="1.5" step="0.01"
                 value={props.lineHeight}
                 onChange={handleLineHeight} />
-            <span>{props.lineHeight}</span>
+            <span>{getLineHeight()}</span>
             <label htmlFor="font-size">Text speed: </label>
             <input
                 id="text-speed"
