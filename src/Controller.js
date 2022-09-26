@@ -75,7 +75,7 @@ const Controller = (props) => {
             <button id="clear" onClick={handleClear} >Clear</button>
             <p>Current mode:</p>
             <button 
-                id="edit" 
+                id="mode" 
                 onClick={handleMode} >
                 {props.mode === "edit" ? "Edit" : "Read"}
             </button>
