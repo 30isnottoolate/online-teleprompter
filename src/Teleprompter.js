@@ -17,9 +17,11 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
-        let intervalValue = ((1000000 * window.innerWidth) / (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
+        let intervalValue = ((1000000 * window.innerWidth) / 
+        (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
 
-        if (isActive && (textDisplayRef.current.offsetHeight > ((-1) * position  + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+        if (isActive && (textDisplayRef.current.offsetHeight > 
+            ((-1) * position  + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
             intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
         } else {
             setIsActive(false);
