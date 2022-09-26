@@ -29,7 +29,9 @@ body {
 #controller {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    background-color: #111111;
+    gap: 3vw;
+    justify-content: center;
+    background-color: #222222;
     color: #ffffff;
     position: fixed;
     height: 10vh;
@@ -57,8 +59,8 @@ body {
 
 #mode-group {
     display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: space-evenly;
+    grid-template-columns: auto auto;
+    gap: 0.5vw;
     align-content: center;
 }
 
