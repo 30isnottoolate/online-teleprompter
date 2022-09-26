@@ -17,16 +17,17 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
+        let intervalValue = ((1000000 * window.innerWidth) / (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
 
-        if (isActive && (textDisplayRef.current.offsetHeight > (position *
-            (-1) + fontSize * lineHeight + textMarkerRef.current.offsetTop) && (position) <= (fontSize * lineHeight))) {
-            intervalID = setInterval(() => setPosition(position => position - 1), 20);
+        if (isActive && (textDisplayRef.current.offsetHeight > ((-1) * position  + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+            intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
         } else {
             setIsActive(false);
             clearInterval(intervalID);
         }
+        
         return () => clearInterval(intervalID);
-    }, [isActive, position]);
+    }, [isActive, position, fontSize, lineHeight, textSpeed]);
 
     return (
         <div id="teleprompter">
