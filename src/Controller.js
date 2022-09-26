@@ -25,6 +25,12 @@ const Controller = (props) => {
         props.setPosition(window.innerHeight * 0.1);
     }
 
+    const handleDefault = () => {
+        props.setFontSize(100);
+        props.setLineHeight(1.2);
+        props.setTextSpeed(100);
+    }
+
     const handleClear = () => props.setText("Type something...");
 
     const handleFontSize = (e) => props.setFontSize(e.target.value);
@@ -58,6 +64,11 @@ const Controller = (props) => {
                 value={props.textSpeed}
                 onChange={handleTextSpeed} />
             <span>{props.textSpeed}</span>
+            <button 
+                id="default" 
+                onClick={handleDefault} >
+                Default
+            </button>
             <button 
                 id="start-stop" 
                 onClick={handleIsActive} >
