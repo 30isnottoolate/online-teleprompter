@@ -2,7 +2,6 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
     padding: auto;
 }
 
@@ -12,6 +11,7 @@ body {
     color: #ffffff;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     overflow: hidden;
+    margin: 0;
 }
 
 ::-webkit-scrollbar {
@@ -27,12 +27,61 @@ body {
   }
 
 #controller {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
     background-color: #111111;
     color: #ffffff;
     position: fixed;
     height: 10vh;
     width: 100vw;
     z-index: 1;
+}
+
+#logo {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+#main-buttons-group {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.5vw;
+    align-content: center;
+    justify-content: center;
+}
+
+.main-buttons {
+    width: 4.5em;
+}
+
+#mode-group {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+#settings {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.5vh 1vw;
+    align-content: center;
+    justify-content: center;
+    text-align: right;
+}
+
+#mode {
+    width: 4.5em;
+}
+
+#default-container {
+    align-content:space-around;
+    margin: auto;
+}
+
+#default {
+    width: 5em;
 }
 
 #text-container, #text-display {
@@ -42,6 +91,7 @@ body {
     color: #ffffff;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     border: 0px;
+    margin: 0;
 }
 
 #text-container {
@@ -59,6 +109,7 @@ body {
 
 #text-marker {
     position: absolute;
+    margin: 0;
 }
 
 .transparent {
