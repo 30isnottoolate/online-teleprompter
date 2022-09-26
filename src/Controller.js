@@ -49,18 +49,21 @@ const Controller = (props) => {
                 type="range" min="80" max="150" step="1"
                 value={props.fontSize}
                 onChange={handleFontSize} />
+            <span>{props.fontSize}</span>
             <label htmlFor="font-size">Line height: </label>
             <input
                 id="line-height"
                 type="range" min="1" max="1.5" step="0.01"
                 value={props.lineHeight}
                 onChange={handleLineHeight} />
+            <span>{props.lineHeight}</span>
             <label htmlFor="font-size">Text speed: </label>
             <input
                 id="text-speed"
                 type="range" min="20" max="200" step="1"
                 value={props.textSpeed}
                 onChange={handleTextSpeed} />
+            <span>{props.textSpeed}</span>
             <button 
                 id="start-stop" 
                 onClick={handleIsActive} >
