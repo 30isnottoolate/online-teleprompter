@@ -1,16 +1,16 @@
 import { useEffect} from 'react';
 import './Teleprompter.css';
 
-const Slider = (props) => {
+const Slider = ({mode, text, setText, position, setPosition, fontSize, lineHeight, textDisplayRef, textMarkerRef}) => {
     useEffect(() => {
-        props.setPosition(window.innerHeight * 0.1);
-    },[props.fontSize, props.lineHeight, props.text]);
+        setPosition(window.innerHeight * 0.1);
+    },[fontSize, lineHeight, text, setPosition]);
 
     const handleTextChange = (e) => {
-        props.setText(e.target.value);
+        setText(e.target.value);
     }
 
-    if (props.mode === "edit") {
+    if (mode === "edit") {
         return (
             <div id="text-slider">
                 <textarea 
@@ -18,11 +18,11 @@ const Slider = (props) => {
                     style={{ 
                         top: "10vh", 
                         height: "90vh", 
-                        left: (props.fontSize * 0.69) + "px", 
-                        width: `calc(100vw - ${(props.fontSize * 0.69)}px)`, 
-                        fontSize: props.fontSize + "px", 
-                        lineHeight: props.lineHeight }}
-                    value={props.text}
+                        left: (fontSize * 0.69) + "px", 
+                        width: `calc(100vw - ${(fontSize * 0.69)}px)`, 
+                        fontSize: fontSize + "px", 
+                        lineHeight: lineHeight }}
+                    value={text}
                     onChange={handleTextChange} />
             </div>
         );
@@ -31,23 +31,23 @@ const Slider = (props) => {
             <div id="text-slider">
                 <pre 
                     id="text-display"
-                    ref={props.textDisplayRef}
+                    ref={textDisplayRef}
                     style={{ 
-                        left: (props.fontSize * 0.69) + 2 + "px", 
-                        top: (props.position + 2), 
-                        width: `calc(99vw - ${(props.fontSize * 0.69)}px)`, 
-                        fontSize: props.fontSize + "px", 
-                        lineHeight: props.lineHeight}}>
-                    {props.text}
+                        left: (fontSize * 0.69) + 2 + "px", 
+                        top: (position + 2), 
+                        width: `calc(99vw - ${(fontSize * 0.69)}px)`, 
+                        fontSize: fontSize + "px", 
+                        lineHeight: lineHeight}}>
+                    {text}
                 </pre>
                 <p 
                     id="text-marker"
-                    ref={props.textMarkerRef}
+                    ref={textMarkerRef}
                     style={{ 
-                        left: (props.fontSize * 0.19),
+                        left: (fontSize * 0.19),
                         top: "10vh",
-                        fontSize: props.fontSize + "px",
-                        lineHeight: props.lineHeight  }}>&#129170;</p>
+                        fontSize: fontSize + "px",
+                        lineHeight: lineHeight  }}>&#129170;</p>
             </div>
         );
     }
