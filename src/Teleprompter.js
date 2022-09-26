@@ -36,13 +36,13 @@ const Teleprompter = () => {
             <Controller
                 isActive={isActive} setIsActive={setIsActive}
                 mode={mode} setMode={setMode}
-                position={position} setPosition={setPosition}
+                setPosition={setPosition}
                 setText={setText}
                 fontSize={fontSize} setFontSize={setFontSize}
                 lineHeight={lineHeight} setLineHeight={setLineHeight}
                 textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
             <Slider
-                mode={mode} setMode={setMode}
+                mode={mode}
                 text={text} setText={setText}
                 position={position} setPosition={setPosition}
                 fontSize={fontSize}
