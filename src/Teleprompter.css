@@ -7,8 +7,6 @@
 
 body {
     user-select: none;
-    background-color: #000000;
-    color: #ffffff;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     overflow: hidden;
     margin: 0;
@@ -16,15 +14,21 @@ body {
 
 ::-webkit-scrollbar {
     width: 1vw;
-  }
-  
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     background: #bbbbbb;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background: #555555;
-  }
+}
+
+#teleprompter {
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+}
 
 #controller {
     display: grid;
@@ -34,9 +38,9 @@ body {
     background-color: #222222;
     color: #ffffff;
     position: fixed;
+    z-index: 2;
     height: 10vh;
     width: 100vw;
-    z-index: 1;
 }
 
 #logo {
@@ -89,9 +93,7 @@ body {
 
 #text-container, #text-display {
     position: absolute;
-    z-index: -1;
-    background-color: #000000;
-    color: #ffffff;
+    z-index: 1;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     border: 0px;
     margin: 0;
