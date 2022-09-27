@@ -25,6 +25,14 @@ const Controller = (props) => {
         }
     }
 
+    const handleTheme = () => {
+        if (props.theme === "dark") {
+            props.setTheme("light");
+        } else {
+            props.setTheme("dark");
+        }
+    }
+
     const handleDefault = () => {
         props.setFontSize(100);
         props.setLineHeight(1.2);
@@ -76,8 +84,8 @@ const Controller = (props) => {
                 <button
                     id="theme"
                     className="mode-buttons"
-                    onClick={handleMode} >
-                    {props.mode === "dark" ? "Dark" : "Light"}
+                    onClick={handleTheme} >
+                    {props.theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
             <div id="settings">
