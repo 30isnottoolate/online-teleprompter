@@ -68,8 +68,16 @@ const Controller = (props) => {
                 <span>Current mode: </span>
                 <button
                     id="mode"
+                    className="mode-buttons"
                     onClick={handleMode} >
                     {props.mode === "edit" ? "Edit" : "Read"}
+                </button>
+                <span>Color theme: </span>
+                <button
+                    id="theme"
+                    className="mode-buttons"
+                    onClick={handleMode} >
+                    {props.mode === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
             <div id="settings">
