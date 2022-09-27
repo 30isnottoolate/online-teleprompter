@@ -8,17 +8,18 @@ const Teleprompter = () => {
     const [mode, setMode] = useState("edit"); // edit or read
     const [theme, setTheme] = useState("dark"); // dark or light
     const [position, setPosition] = useState(100);
-    const [text, setText] = useState("Type something...");
+    const [text, setText] = useState("");
     const [fontSize, setFontSize] = useState(100);
     const [lineHeight, setLineHeight] = useState(1.2);
     const [textSpeed, setTextSpeed] = useState(100);
 
-    const textContainerRef = use(null);
+    const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
     const textMarkerRef = useRef(null);
 
     useEffect(() => {
-    }, [])
+        if (mode === "edit") textContainerRef.current.focus();
+    }, [mode])
 
     useEffect(() => {
         let intervalID = null;
