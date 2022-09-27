@@ -33,7 +33,7 @@ const Teleprompter = () => {
     }, [isActive, position, fontSize, lineHeight, textSpeed]);
 
     return (
-        <div id="teleprompter">
+        <div id="teleprompter" className={theme}>
             <Controller
                 isActive={isActive} setIsActive={setIsActive}
                 mode={mode} setMode={setMode}
