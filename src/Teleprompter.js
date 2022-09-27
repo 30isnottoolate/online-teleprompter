@@ -5,7 +5,7 @@ import Slider from './Slider';
 
 const Teleprompter = () => {
     const [isActive, setIsActive] = useState(false);
-    const [mode, setMode] = useState("read"); // read or edit
+    const [mode, setMode] = useState("edit"); // edit or read
     const [theme, setTheme] = useState("dark"); // dark or light
     const [position, setPosition] = useState(100);
     const [text, setText] = useState("Type something...");
@@ -13,8 +13,12 @@ const Teleprompter = () => {
     const [lineHeight, setLineHeight] = useState(1.2);
     const [textSpeed, setTextSpeed] = useState(100);
 
+    const textContainerRef = use(null);
     const textDisplayRef = useRef(null);
     const textMarkerRef = useRef(null);
+
+    useEffect(() => {
+    }, [])
 
     useEffect(() => {
         let intervalID = null;
@@ -50,6 +54,7 @@ const Teleprompter = () => {
                 position={position} setPosition={setPosition}
                 fontSize={fontSize}
                 lineHeight={lineHeight} 
+                textContainerRef={textContainerRef}
                 textDisplayRef={textDisplayRef}
                 textMarkerRef={textMarkerRef} />
         </div>
