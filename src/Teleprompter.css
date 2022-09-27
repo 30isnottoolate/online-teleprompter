@@ -61,6 +61,10 @@ body {
     width: 4.5em;
 }
 
+#start-stop, #default {
+    font-weight: bold;
+}
+
 #mode-group {
     display: grid;
     grid-template-columns: auto auto;
