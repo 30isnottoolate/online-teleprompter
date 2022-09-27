@@ -1,6 +1,8 @@
 import { useEffect} from 'react';
 import './Teleprompter.css';
 
+const DEFAULT_TEXT = "Type something...";
+
 const Slider = ({mode, theme, text, setText, position, setPosition, fontSize, lineHeight, textContainerRef, textDisplayRef, textMarkerRef}) => {
     useEffect(() => {
         setPosition(window.innerHeight * 0.1);
@@ -25,6 +27,7 @@ const Slider = ({mode, theme, text, setText, position, setPosition, fontSize, li
                         fontSize: fontSize + "px", 
                         lineHeight: lineHeight }}
                     value={text}
+                    placeholder={DEFAULT_TEXT}
                     onChange={handleTextChange} />
             </div>
         );
