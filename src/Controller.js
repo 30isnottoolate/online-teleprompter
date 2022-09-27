@@ -50,7 +50,12 @@ const Controller = (props) => {
     const getLineHeight = () => (parseFloat(props.lineHeight)).toFixed(2);
 
     return (
-        <div id="controller" className={props.isActive ? "transparent" : "visible"}>
+        <div 
+            id="controller" 
+            className={props.isActive ? "transparent" : "visible"} 
+            style={{
+                backgroundColor: props.theme === "dark" ? "#222222" : "#dddddd", 
+                color: props.theme === "dark" ? "#ffffff" : "#000000"}}>
             <div id="logo">
                 <h1>
                     Online Teleprompter
