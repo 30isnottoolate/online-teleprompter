@@ -1,7 +1,7 @@
 import { useEffect} from 'react';
 import './Teleprompter.css';
 
-const Slider = ({mode, text, setText, position, setPosition, fontSize, lineHeight, textDisplayRef, textMarkerRef}) => {
+const Slider = ({mode, theme, text, setText, position, setPosition, fontSize, lineHeight, textDisplayRef, textMarkerRef}) => {
     useEffect(() => {
         setPosition(window.innerHeight * 0.1);
     },[fontSize, lineHeight, text, setPosition]);
@@ -15,6 +15,7 @@ const Slider = ({mode, text, setText, position, setPosition, fontSize, lineHeigh
             <div id="text-slider">
                 <textarea 
                     id="text-container" 
+                    className={theme}
                     style={{ 
                         top: "10vh", 
                         height: "90vh", 
@@ -32,6 +33,7 @@ const Slider = ({mode, text, setText, position, setPosition, fontSize, lineHeigh
                 <pre 
                     id="text-display"
                     ref={textDisplayRef}
+                    className={theme}
                     style={{ 
                         left: (fontSize * 0.69) + 2 + "px", 
                         top: (position + 2), 
@@ -43,6 +45,7 @@ const Slider = ({mode, text, setText, position, setPosition, fontSize, lineHeigh
                 <p 
                     id="text-marker"
                     ref={textMarkerRef}
+                    className={theme}
                     style={{ 
                         left: (fontSize * 0.19),
                         top: "10vh",
