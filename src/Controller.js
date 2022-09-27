@@ -39,7 +39,10 @@ const Controller = (props) => {
         props.setTextSpeed(100);
     }
 
-    const handleClear = () => props.setText("Type something...");
+    const handleClear = () => {
+        props.setText("");
+        props.setMode("edit");
+    }
 
     const handleFontSize = (e) => props.setFontSize(e.target.value);
 
