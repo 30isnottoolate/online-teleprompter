@@ -7,6 +7,7 @@ const Teleprompter = () => {
     const [isActive, setIsActive] = useState(false);
     const [mode, setMode] = useState("edit"); // edit or read
     const [theme, setTheme] = useState("dark"); // dark or light
+    const [isMenuEnabled, setIsMenuEnabled] = useState(false);
     const [position, setPosition] = useState(100);
     const [text, setText] = useState("");
     const [fontSize, setFontSize] = useState(100);
@@ -43,6 +44,7 @@ const Teleprompter = () => {
                 isActive={isActive} setIsActive={setIsActive}
                 mode={mode} setMode={setMode}
                 theme={theme} setTheme={setTheme}
+                isMenuEnabled={isMenuEnabled} setIsMenuEnabled={isMenuEnabled}
                 setPosition={setPosition}
                 setText={setText}
                 fontSize={fontSize} setFontSize={setFontSize}
