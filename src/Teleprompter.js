@@ -19,8 +19,14 @@ const Teleprompter = () => {
     const textMarkerRef = useRef(null);
 
     useEffect(() => {
+        if (window.innerWidth < 701) {
+            setFontSize(40);
+        }
+    }, []);
+
+    useEffect(() => {
         if (mode === "edit") textContainerRef.current.focus();
-    }, [mode])
+    }, [mode]);
 
     useEffect(() => {
         let intervalID = null;
