@@ -196,6 +196,44 @@ body {
     }
 }
 
-/*@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 700px) {
+    #controller {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto auto;
+        gap: 2vh;
+        align-content: center;
+        height: 40vh;
+    }
 
-}*/
+    #logo {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    #main-buttons-group {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    #mode-group {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+
+    #default-container {
+        display: grid;
+        grid-template-columns: auto;
+        grid-column: 1 / 2;
+        grid-row: 5 / 6;
+        justify-content: center;
+    }
+
+    #settings {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
+
+    #font-size, #line-height, #text-speed {
+        width: 40vw
+    }
+}
