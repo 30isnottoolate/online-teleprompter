@@ -1,49 +1,49 @@
 import './Teleprompter.css';
 
-const Controller = (props) => {
+const Controller = ({isActive, setIsActive, mode, setMode, theme, setTheme, isMenuEnabled, setIsMenuEnabled, setPosition, setText, fontSize, setFontSize, lineHeight, setLineHeight, textSpeed, setTextSpeed}) => {
     const handleIsActive = () => {
-        if (props.isActive) {
-            props.setIsActive(false);
+        if (isActive) {
+            setIsActive(false);
         } else {
-            props.setIsActive(true);
-            props.setMode("read");
-            props.setIsMenuEnabled(false);
+            setIsActive(true);
+            setMode("read");
+            setIsMenuEnabled(false);
         }
     }
 
     const handleReset = () => {
-        props.setIsActive(false);
-        props.setPosition(window.innerHeight * 0.15);
+        setIsActive(false);
+        setPosition(window.innerHeight * 0.15);
     }
 
     const handleMode = () => {
-        if (props.mode === "edit") {
-            props.setMode("read");
-            props.setIsMenuEnabled(false);
+        if (mode === "edit") {
+            setMode("read");
+            setIsMenuEnabled(false);
         } else {
-            props.setMode("edit");
-            props.setIsActive(false);
-            props.setPosition(window.innerHeight * 0.15);
+            setMode("edit");
+            setIsActive(false);
+            setPosition(window.innerHeight * 0.15);
         }
     }
 
     const handleTheme = () => {
-        if (props.theme === "dark") {
-            props.setTheme("light");
+        if (theme === "dark") {
+            setTheme("light");
         } else {
-            props.setTheme("dark");
+            setTheme("dark");
         }
     }
 
     const handleDefault = () => {
-        props.setFontSize(100);
-        props.setLineHeight(1.2);
-        props.setTextSpeed(100);
+        setFontSize(100);
+        setLineHeight(1.2);
+        setTextSpeed(100);
     }
 
     const handleClear = () => {
-        props.setText("");
-        props.setMode("edit");
+        setText("");
+        setMode("edit");
     }
 
     const getButtonPresence = () => {
@@ -54,44 +54,44 @@ const Controller = (props) => {
 
     const getDivPresence = () => {
         if (window.innerWidth < 701) {
-            if (props.isMenuEnabled) {
+            if (isMenuEnabled) {
                 return "grid";
             } else return "none";
         } else return "grid";
     }
 
     const getControllerHeight = () => {
-        if (window.innerWidth < 701 && props.isMenuEnabled) {
+        if (window.innerWidth < 701 && isMenuEnabled) {
             return "40vh";
         } else return "15vh";
     }
 
     const getGridTemplate = () => {
         if (window.innerWidth < 701) {
-            if (props.isMenuEnabled) {
+            if (isMenuEnabled) {
                 return "repeat(5, auto)";
             } else return "repeat(2, auto)";
         } else return "auto";
     }
 
-    const handleIsMenuEnabled = () => props.setIsMenuEnabled(!props.isMenuEnabled);
+    const handleIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
 
-    const handleFontSize = (e) => props.setFontSize(e.target.value);
+    const handleFontSize = (e) => setFontSize(e.target.value);
 
-    const handleLineHeight = (e) => props.setLineHeight(e.target.value);
+    const handleLineHeight = (e) => setLineHeight(e.target.value);
 
-    const handleTextSpeed = (e) => props.setTextSpeed(e.target.value);
+    const handleTextSpeed = (e) => setTextSpeed(e.target.value);
 
-    const getLineHeight = () => (parseFloat(props.lineHeight)).toFixed(2);
+    const getLineHeight = () => (parseFloat(lineHeight)).toFixed(2);
 
     return (
         <div
             id="controller"
-            className={props.isActive ? "transparent" : "visible"}
+            className={isActive ? "transparent" : "visible"}
             style={{
                 gridTemplateRows: getGridTemplate(),
-                backgroundColor: props.theme === "dark" ? "#222222" : "#dddddd",
-                color: props.theme === "dark" ? "#ffffff" : "#000000",
+                backgroundColor: theme === "dark" ? "#222222" : "#dddddd",
+                color: theme === "dark" ? "#ffffff" : "#000000",
                 height: getControllerHeight()
             }}>
             <div id="logo">
@@ -104,13 +104,13 @@ const Controller = (props) => {
                     id="start-stop"
                     className="main-buttons"
                     onClick={handleIsActive} >
-                    {props.isActive ? "Stop" : "Start"}
+                    {isActive ? "Stop" : "Start"}
                 </button>
                 <button
                     id="reset"
                     className="main-buttons"
                     onClick={handleReset}
-                    disabled={props.mode === "edit" ? true : false}>
+                    disabled={mode === "edit" ? true : false}>
                     Reset
                 </button>
                 <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
@@ -122,14 +122,14 @@ const Controller = (props) => {
                     id="mode"
                     className="mode-buttons"
                     onClick={handleMode} >
-                    {props.mode === "edit" ? "Edit" : "Read"}
+                    {mode === "edit" ? "Edit" : "Read"}
                 </button>
                 <span>Color theme: </span>
                 <button
                     id="theme"
                     className="mode-buttons"
                     onClick={handleTheme} >
-                    {props.theme === "dark" ? "Dark" : "Light"}
+                    {theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
             <div id="settings" style={{ display: getDivPresence() }} >
@@ -137,23 +137,23 @@ const Controller = (props) => {
                 <input
                     id="font-size"
                     type="range" min="40" max="150" step="1"
-                    value={props.fontSize}
+                    value={fontSize}
                     onChange={handleFontSize} />
-                <span>{props.fontSize}</span>
+                <span>{fontSize}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
                     id="line-height"
                     type="range" min="1" max="1.5" step="0.01"
-                    value={props.lineHeight}
+                    value={lineHeight}
                     onChange={handleLineHeight} />
                 <span>{getLineHeight()}</span>
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
                     id="text-speed"
                     type="range" min="20" max="200" step="1"
-                    value={props.textSpeed}
+                    value={textSpeed}
                     onChange={handleTextSpeed} />
-                <span>{props.textSpeed}</span>
+                <span>{textSpeed}</span>
             </div>
             <div id="default-container" style={{ display: getDivPresence() }} >
                 <button
