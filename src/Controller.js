@@ -79,6 +79,7 @@ const Controller = (props) => {
                     Reset
                 </button>
                 <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
+                <button id="settings-button">Settings</button>
             </div>
             <div id="mode-group">
                 <span>Current mode: </span>
