@@ -85,14 +85,15 @@ const Controller = (props) => {
     const getLineHeight = () => (parseFloat(props.lineHeight)).toFixed(2);
 
     return (
-        <div 
-            id="controller" 
-            className={props.isActive ? "transparent" : "visible"} 
+        <div
+            id="controller"
+            className={props.isActive ? "transparent" : "visible"}
             style={{
                 gridTemplateRows: getGridTemplate(),
-                backgroundColor: props.theme === "dark" ? "#222222" : "#dddddd", 
+                backgroundColor: props.theme === "dark" ? "#222222" : "#dddddd",
                 color: props.theme === "dark" ? "#ffffff" : "#000000",
-                height: getControllerHeight()}}>
+                height: getControllerHeight()
+            }}>
             <div id="logo">
                 <h1>
                     Online Teleprompter
@@ -113,9 +114,9 @@ const Controller = (props) => {
                     Reset
                 </button>
                 <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
-                <button id="settings-button" className="main-buttons" style={{display: getButtonPresence()}} onClick={handleIsMenuEnabled}>Settings</button>
+                <button id="settings-button" className="main-buttons" style={{ display: getButtonPresence() }} onClick={handleIsMenuEnabled}>Settings</button>
             </div>
-            <div id="mode-group" style={{display: getDivPresence()}} >
+            <div id="mode-group" style={{ display: getDivPresence() }} >
                 <span>Current mode: </span>
                 <button
                     id="mode"
@@ -131,7 +132,7 @@ const Controller = (props) => {
                     {props.theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
-            <div id="settings" style={{display: getDivPresence()}} >
+            <div id="settings" style={{ display: getDivPresence() }} >
                 <label htmlFor="font-size">Font size: </label>
                 <input
                     id="font-size"
@@ -154,7 +155,7 @@ const Controller = (props) => {
                     onChange={handleTextSpeed} />
                 <span>{props.textSpeed}</span>
             </div>
-            <div id="default-container" style={{display: getDivPresence()}} >
+            <div id="default-container" style={{ display: getDivPresence() }} >
                 <button
                     id="default"
                     onClick={handleDefault} >
