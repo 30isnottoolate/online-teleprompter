@@ -7,21 +7,23 @@ const Controller = (props) => {
         } else {
             props.setIsActive(true);
             props.setMode("read");
+            props.setIsMenuEnabled(false);
         }
     }
 
     const handleReset = () => {
         props.setIsActive(false);
-        props.setPosition(window.innerHeight * 0.1);
+        props.setPosition(window.innerHeight * 0.15);
     }
 
     const handleMode = () => {
         if (props.mode === "edit") {
             props.setMode("read");
+            props.setIsMenuEnabled(false);
         } else {
             props.setMode("edit");
             props.setIsActive(false);
-            props.setPosition(window.innerHeight * 0.1);
+            props.setPosition(window.innerHeight * 0.15);
         }
     }
 
@@ -44,6 +46,36 @@ const Controller = (props) => {
         props.setMode("edit");
     }
 
+    const getButtonPresence = () => {
+        if (window.innerWidth < 701) {
+            return "initial";
+        } else return "none";
+    }
+
+    const getDivPresence = () => {
+        if (window.innerWidth < 701) {
+            if (props.isMenuEnabled) {
+                return "grid";
+            } else return "none";
+        } else return "grid";
+    }
+
+    const getControllerHeight = () => {
+        if (window.innerWidth < 701 && props.isMenuEnabled) {
+            return "40vh";
+        } else return "15vh";
+    }
+
+    const getGridTemplate = () => {
+        if (window.innerWidth < 701) {
+            if (props.isMenuEnabled) {
+                return "repeat(5, auto)";
+            } else return "repeat(2, auto)";
+        } else return "auto";
+    }
+
+    const handleIsMenuEnabled = () => props.setIsMenuEnabled(!props.isMenuEnabled);
+
     const handleFontSize = (e) => props.setFontSize(e.target.value);
 
     const handleLineHeight = (e) => props.setLineHeight(e.target.value);
@@ -57,8 +89,10 @@ const Controller = (props) => {
             id="controller" 
             className={props.isActive ? "transparent" : "visible"} 
             style={{
+                gridTemplateRows: getGridTemplate(),
                 backgroundColor: props.theme === "dark" ? "#222222" : "#dddddd", 
-                color: props.theme === "dark" ? "#ffffff" : "#000000"}}>
+                color: props.theme === "dark" ? "#ffffff" : "#000000",
+                height: getControllerHeight()}}>
             <div id="logo">
                 <h1>
                     Online Teleprompter
@@ -79,9 +113,9 @@ const Controller = (props) => {
                     Reset
                 </button>
                 <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
-                <button id="settings-button">Settings</button>
+                <button id="settings-button" className="main-buttons" style={{display: getButtonPresence()}} onClick={handleIsMenuEnabled}>Settings</button>
             </div>
-            <div id="mode-group">
+            <div id="mode-group" style={{display: getDivPresence()}} >
                 <span>Current mode: </span>
                 <button
                     id="mode"
@@ -97,11 +131,11 @@ const Controller = (props) => {
                     {props.theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
-            <div id="settings">
+            <div id="settings" style={{display: getDivPresence()}} >
                 <label htmlFor="font-size">Font size: </label>
                 <input
                     id="font-size"
-                    type="range" min="80" max="150" step="1"
+                    type="range" min="40" max="150" step="1"
                     value={props.fontSize}
                     onChange={handleFontSize} />
                 <span>{props.fontSize}</span>
@@ -120,7 +154,7 @@ const Controller = (props) => {
                     onChange={handleTextSpeed} />
                 <span>{props.textSpeed}</span>
             </div>
-            <div id="default-container">
+            <div id="default-container" style={{display: getDivPresence()}} >
                 <button
                     id="default"
                     onClick={handleDefault} >
