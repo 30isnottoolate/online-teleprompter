@@ -44,7 +44,7 @@ const Teleprompter = () => {
                 isActive={isActive} setIsActive={setIsActive}
                 mode={mode} setMode={setMode}
                 theme={theme} setTheme={setTheme}
-                isMenuEnabled={isMenuEnabled} setIsMenuEnabled={isMenuEnabled}
+                isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
                 setPosition={setPosition}
                 setText={setText}
                 fontSize={fontSize} setFontSize={setFontSize}
