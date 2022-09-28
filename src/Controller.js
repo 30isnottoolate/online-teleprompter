@@ -1,6 +1,8 @@
 import './Teleprompter.css';
 
-const Controller = ({isActive, setIsActive, mode, setMode, theme, setTheme, isMenuEnabled, setIsMenuEnabled, setPosition, setText, fontSize, setFontSize, lineHeight, setLineHeight, textSpeed, setTextSpeed}) => {
+const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
+    isMenuEnabled, setIsMenuEnabled, setPosition, setText, fontSize, setFontSize,
+    lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
     const handleIsActive = () => {
         if (isActive) {
             setIsActive(false);
@@ -114,7 +116,13 @@ const Controller = ({isActive, setIsActive, mode, setMode, theme, setTheme, isMe
                     Reset
                 </button>
                 <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
-                <button id="settings-button" className="main-buttons" style={{ display: getButtonPresence() }} onClick={handleIsMenuEnabled}>Settings</button>
+                <button
+                    id="settings-button" 
+                    className="main-buttons"
+                    style={{ display: getButtonPresence() }}
+                    onClick={handleIsMenuEnabled}>
+                    Settings
+                </button>
             </div>
             <div id="mode-group" style={{ display: getDivPresence() }} >
                 <span>Current mode: </span>
