@@ -24,7 +24,7 @@ const Teleprompter = () => {
             return localStorage.getItem("theme");
         }
     });
-    
+
     const [text, setText] = useState(() => {
         if (localStorage.getItem("text") === null) {
             localStorage.setItem("text", DEFAULT_TEXT);
@@ -67,18 +67,38 @@ const Teleprompter = () => {
     const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
     const textMarkerRef = useRef(null);
-    
+
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    useEffect(() => {
+        localStorage.setItem("text", text);
+    }, [text]);
+
+    useEffect(() => {
+        localStorage.setItem("fontSize", fontSize);
+    }, [fontSize]);
+
+    useEffect(() => {
+        localStorage.setItem("lineHeight", lineHeight);
+    }, [lineHeight]);
+
+    useEffect(() => {
+        localStorage.setItem("textSpeed", textSpeed);
+    }, [textSpeed]);
+
     useEffect(() => {
         if (mode === "edit") textContainerRef.current.focus();
     }, [mode]);
 
     useEffect(() => {
         let intervalID = null;
-        let intervalValue = ((1000000 * window.innerWidth) / 
-        (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
+        let intervalValue = ((1000000 * window.innerWidth) /
+            (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
 
-        if (isActive && (textDisplayRef.current.offsetHeight > 
-            ((-1) * position  + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+        if (isActive && (textDisplayRef.current.offsetHeight >
+            ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
             intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
         } else {
             setIsActive(false);
@@ -106,7 +126,7 @@ const Teleprompter = () => {
                 text={text} setText={setText}
                 position={position} setPosition={setPosition}
                 fontSize={fontSize}
-                lineHeight={lineHeight} 
+                lineHeight={lineHeight}
                 textContainerRef={textContainerRef}
                 textDisplayRef={textDisplayRef}
                 textMarkerRef={textMarkerRef} />
