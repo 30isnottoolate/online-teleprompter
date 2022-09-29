@@ -3,16 +3,27 @@ import './Teleprompter.css';
 import Controller from './Controller.js';
 import Slider from './Slider';
 
+const DEFAULT_IS_ACTIVE = false;
+const DEFAULT_MODE = "edit"; // edit or read
+const DEFAULT_THEME = "dark"; // dark or light
+const DEFAULT_IS_MENU_ENABLED = "false";
+const DEFAULT_POSITION = "0";
+const DEFAULT_TEXT = "";
+const DEFAULT_FONT_SIZE = "100";
+const DEFAULT_LINE_HEIGHT = "1.2";
+const DEFAULT_TEXT_SPEED = "100";
+
+
 const Teleprompter = () => {
-    const [isActive, setIsActive] = useState(false);
-    const [mode, setMode] = useState("edit"); // edit or read
-    const [theme, setTheme] = useState("dark"); // dark or light
-    const [isMenuEnabled, setIsMenuEnabled] = useState(false);
-    const [position, setPosition] = useState(100);
-    const [text, setText] = useState("");
-    const [fontSize, setFontSize] = useState(100);
-    const [lineHeight, setLineHeight] = useState(1.2);
-    const [textSpeed, setTextSpeed] = useState(100);
+    const [isActive, setIsActive] = useState(DEFAULT_IS_ACTIVE);
+    const [mode, setMode] = useState(DEFAULT_MODE);
+    const [theme, setTheme] = useState(DEFAULT_THEME);
+    const [isMenuEnabled, setIsMenuEnabled] = useState(DEFAULT_IS_MENU_ENABLED);
+    const [position, setPosition] = useState(DEFAULT_POSITION);
+    const [text, setText] = useState(DEFAULT_TEXT);
+    const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
+    const [lineHeight, setLineHeight] = useState(DEFAULT_LINE_HEIGHT);
+    const [textSpeed, setTextSpeed] = useState(DEFAULT_TEXT_SPEED);
 
     const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
