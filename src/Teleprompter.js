@@ -5,9 +5,9 @@ import Slider from './Slider.js';
 
 const DEFAULT_THEME = "dark"; // dark or light
 const DEFAULT_TEXT = "";
-const DEFAULT_FONT_SIZE = "100";
-const DEFAULT_LINE_HEIGHT = "1.2";
-const DEFAULT_TEXT_SPEED = "100";
+const DEFAULT_FONT_SIZE = 100;
+const DEFAULT_LINE_HEIGHT = 1.2;
+const DEFAULT_TEXT_SPEED = 100;
 
 const Teleprompter = () => {
     const [isActive, setIsActive] = useState(false);
