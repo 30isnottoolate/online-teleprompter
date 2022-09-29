@@ -30,6 +30,54 @@ const Teleprompter = () => {
     const textMarkerRef = useRef(null);
 
     useEffect(() => {
+        if (localStorage.getItem("isActive") === null) {
+            localStorage.setItem("isActive", DEFAULT_IS_ACTIVE);
+        } else setIsActive(localStorage.getItem("isActive"));
+
+        if (localStorage.getItem("mode") === null) {
+            localStorage.setItem("mode", DEFAULT_MODE);
+        } else setMode(localStorage.getItem("mode"));
+
+        if (localStorage.getItem("theme") === null) {
+            localStorage.setItem("theme", DEFAULT_THEME);
+        } else setTheme(localStorage.getItem("theme"));
+
+        if (localStorage.getItem("isMenuEnabled") === null) {
+            localStorage.setItem("isMenuEnabled", DEFAULT_IS_MENU_ENABLED);
+        } else setIsMenuEnabled(localStorage.getItem("isMenuEnabled"));
+
+        if (localStorage.getItem("position") === null) {
+            localStorage.setItem("position", DEFAULT_POSITION);
+        } else setPosition(localStorage.getItem("position"));
+
+        if (localStorage.getItem("text") === null) {
+            localStorage.setItem("text", DEFAULT_TEXT);
+        } else setText(localStorage.getItem("text"));
+
+        if (window.innerWidth < 701) {
+            if (localStorage.getItem("fontSize") === null) {
+                localStorage.setItem("fontSize", 40);
+            } else setFontSize(localStorage.getItem("fontSize"));
+        } else {
+            if (localStorage.getItem("fontSize") === null) {
+                localStorage.setItem("fontSize", DEFAULT_FONT_SIZE);
+            } else setFontSize(localStorage.getItem("fontSize"));
+        }
+
+        if (localStorage.getItem("fontSize") === null) {
+            localStorage.setItem("fontSize", DEFAULT_FONT_SIZE);
+        } else setFontSize(localStorage.getItem("fontSize"));
+
+        if (localStorage.getItem("lineHeight") === null) {
+            localStorage.setItem("lineHeight", DEFAULT_LINE_HEIGHT);
+        } else setLineHeight(localStorage.getItem("lineHeight"));
+
+        if (localStorage.getItem("textSpeed") === null) {
+            localStorage.setItem("textSpeed", DEFAULT_TEXT_SPEED);
+        } else setTextSpeed(localStorage.getItem("textSpeed"));
+    }, []);
+
+    useEffect(() => {
         if (window.innerWidth < 701) {
             setFontSize(40);
         }
