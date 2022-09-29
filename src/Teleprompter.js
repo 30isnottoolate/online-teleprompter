@@ -15,6 +15,7 @@ const Teleprompter = () => {
     const [mode, setMode] = useState("edit"); // edit or read
     const [isMenuEnabled, setIsMenuEnabled] = useState(false);
     const [position, setPosition] = useState(0);
+    const [viewportWidth, setViewportWidth] = useState(null);
 
     const [theme, setTheme] = useState(() => {
         if (localStorage.getItem("theme") === null) {
@@ -67,6 +68,11 @@ const Teleprompter = () => {
     const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
     const textMarkerRef = useRef(null);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
+        return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth));
+    }, [viewportWidth]);
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
