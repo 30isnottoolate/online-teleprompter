@@ -3,11 +3,7 @@ import './Teleprompter.css';
 import Controller from './Controller.js';
 import Slider from './Slider';
 
-const DEFAULT_IS_ACTIVE = false;
-const DEFAULT_MODE = "edit"; // edit or read
 const DEFAULT_THEME = "dark"; // dark or light
-const DEFAULT_IS_MENU_ENABLED = "false";
-const DEFAULT_POSITION = "0";
 const DEFAULT_TEXT = "";
 const DEFAULT_FONT_SIZE = "100";
 const DEFAULT_LINE_HEIGHT = "1.2";
@@ -15,11 +11,11 @@ const DEFAULT_TEXT_SPEED = "100";
 
 
 const Teleprompter = () => {
-    const [isActive, setIsActive] = useState(DEFAULT_IS_ACTIVE);
-    const [mode, setMode] = useState(DEFAULT_MODE);
+    const [isActive, setIsActive] = useState(false);
+    const [mode, setMode] = useState("edit"); // edit or read
     const [theme, setTheme] = useState(DEFAULT_THEME);
-    const [isMenuEnabled, setIsMenuEnabled] = useState(DEFAULT_IS_MENU_ENABLED);
-    const [position, setPosition] = useState(DEFAULT_POSITION);
+    const [isMenuEnabled, setIsMenuEnabled] = useState(false);
+    const [position, setPosition] = useState(0);
     const [text, setText] = useState(DEFAULT_TEXT);
     const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
     const [lineHeight, setLineHeight] = useState(DEFAULT_LINE_HEIGHT);
@@ -30,25 +26,9 @@ const Teleprompter = () => {
     const textMarkerRef = useRef(null);
 
     useEffect(() => {
-        if (localStorage.getItem("isActive") === null) {
-            localStorage.setItem("isActive", DEFAULT_IS_ACTIVE);
-        } else setIsActive(localStorage.getItem("isActive"));
-
-        if (localStorage.getItem("mode") === null) {
-            localStorage.setItem("mode", DEFAULT_MODE);
-        } else setMode(localStorage.getItem("mode"));
-
         if (localStorage.getItem("theme") === null) {
             localStorage.setItem("theme", DEFAULT_THEME);
         } else setTheme(localStorage.getItem("theme"));
-
-        if (localStorage.getItem("isMenuEnabled") === null) {
-            localStorage.setItem("isMenuEnabled", DEFAULT_IS_MENU_ENABLED);
-        } else setIsMenuEnabled(localStorage.getItem("isMenuEnabled"));
-
-        if (localStorage.getItem("position") === null) {
-            localStorage.setItem("position", DEFAULT_POSITION);
-        } else setPosition(localStorage.getItem("position"));
 
         if (localStorage.getItem("text") === null) {
             localStorage.setItem("text", DEFAULT_TEXT);
@@ -64,10 +44,6 @@ const Teleprompter = () => {
             } else setFontSize(localStorage.getItem("fontSize"));
         }
 
-        if (localStorage.getItem("fontSize") === null) {
-            localStorage.setItem("fontSize", DEFAULT_FONT_SIZE);
-        } else setFontSize(localStorage.getItem("fontSize"));
-
         if (localStorage.getItem("lineHeight") === null) {
             localStorage.setItem("lineHeight", DEFAULT_LINE_HEIGHT);
         } else setLineHeight(localStorage.getItem("lineHeight"));
@@ -75,12 +51,6 @@ const Teleprompter = () => {
         if (localStorage.getItem("textSpeed") === null) {
             localStorage.setItem("textSpeed", DEFAULT_TEXT_SPEED);
         } else setTextSpeed(localStorage.getItem("textSpeed"));
-    }, []);
-
-    useEffect(() => {
-        if (window.innerWidth < 701) {
-            setFontSize(40);
-        }
     }, []);
 
     useEffect(() => {
