@@ -38,7 +38,10 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     }
 
     const handleDefault = () => {
-        setFontSize(100);
+        if (window.innerWidth < 701) {
+            setFontSize(40);
+        } else setFontSize(100);
+        
         setLineHeight(1.2);
         setTextSpeed(100);
     }
