@@ -111,7 +111,7 @@ const Teleprompter = () => {
         }
 
         return () => clearInterval(intervalID);
-    }, [isActive, position, fontSize, lineHeight, textSpeed]);
+    }, [isActive, position, viewportWidth, fontSize, lineHeight, textSpeed]);
 
     return (
         <div id="teleprompter" className={theme}>
