@@ -36,7 +36,7 @@ const Teleprompter = () => {
 
     const [fontSize, setFontSize] = useState(() => {
         if (localStorage.getItem("fontSize") === null) {
-            if (window.innerWidth < 701) {
+            if (viewportWidth < 701) {
                 localStorage.setItem("fontSize", 40);
                 return 40;
             } else {
@@ -99,7 +99,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
-        let intervalValue = ((1000000 * window.innerWidth) /
+        let intervalValue = ((1000000 * viewportWidth) /
             (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
 
         if (isActive && (textDisplayRef.current.offsetHeight >
