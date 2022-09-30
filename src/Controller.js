@@ -1,7 +1,7 @@
 import './Teleprompter.css';
 
 const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
-    isMenuEnabled, setIsMenuEnabled, setPosition, setText, fontSize, setFontSize,
+    isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
     const handleIsActive = () => {
         if (isActive) {
@@ -38,7 +38,7 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     }
 
     const handleDefault = () => {
-        if (window.innerWidth < 701) {
+        if (viewportWidth < 701) {
             setFontSize(40);
         } else setFontSize(100);
         
@@ -52,13 +52,13 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     }
 
     const getButtonPresence = () => {
-        if (window.innerWidth < 701) {
+        if (viewportWidth < 701) {
             return "initial";
         } else return "none";
     }
 
     const getDivPresence = () => {
-        if (window.innerWidth < 701) {
+        if (viewportWidth < 701) {
             if (isMenuEnabled) {
                 return "grid";
             } else return "none";
@@ -66,13 +66,13 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     }
 
     const getControllerHeight = () => {
-        if (window.innerWidth < 701 && isMenuEnabled) {
+        if (viewportWidth < 701 && isMenuEnabled) {
             return "40vh";
         } else return "15vh";
     }
 
     const getGridTemplate = () => {
-        if (window.innerWidth < 701) {
+        if (viewportWidth < 701) {
             if (isMenuEnabled) {
                 return "repeat(5, auto)";
             } else return "repeat(2, auto)";
@@ -86,7 +86,7 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     const handleLineHeight = (e) => setLineHeight(e.target.value);
 
     const handleTextSpeed = (e) => setTextSpeed(e.target.value);
-    
+
     return (
         <div
             id="controller"
