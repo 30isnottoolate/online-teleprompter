@@ -86,9 +86,7 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     const handleLineHeight = (e) => setLineHeight(e.target.value);
 
     const handleTextSpeed = (e) => setTextSpeed(e.target.value);
-
-    const getLineHeight = () => (parseFloat(lineHeight)).toFixed(2);
-
+    
     return (
         <div
             id="controller"
@@ -157,7 +155,7 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
                     type="range" min="1" max="1.5" step="0.01"
                     value={lineHeight}
                     onChange={handleLineHeight} />
-                <span>{getLineHeight()}</span>
+                <span>{(parseFloat(lineHeight)).toFixed(2)}</span>
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
                     id="text-speed"
