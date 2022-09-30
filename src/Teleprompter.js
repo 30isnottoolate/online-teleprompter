@@ -14,7 +14,7 @@ const Teleprompter = () => {
     const [mode, setMode] = useState("edit"); // edit or read
     const [isMenuEnabled, setIsMenuEnabled] = useState(false);
     const [position, setPosition] = useState(0);
-    const [viewportWidth, setViewportWidth] = useState(null);
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
     const [theme, setTheme] = useState(() => {
         if (localStorage.getItem("theme") === null) {
