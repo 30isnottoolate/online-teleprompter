@@ -8,6 +8,7 @@ const DEFAULT_TEXT = "";
 const DEFAULT_FONT_SIZE = 100;
 const DEFAULT_LINE_HEIGHT = 1.2;
 const DEFAULT_TEXT_SPEED = 100;
+const READ_SPEED_COEF = 0.0151; // char/ms
 
 const Teleprompter = () => {
     const [isActive, setIsActive] = useState(false);
@@ -99,8 +100,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
-        let intervalValue = ((1000000 * viewportWidth) /
-            (Math.pow(fontSize, 2) * lineHeight * textSpeed * 1920)) * 19;
+        let intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 
         if (isActive && (textDisplayRef.current.offsetHeight >
             ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
