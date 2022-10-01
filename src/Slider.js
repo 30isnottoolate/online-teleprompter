@@ -12,52 +12,51 @@ const Slider = ({mode, theme, text, setText, position, setPosition, fontSize, li
         setText(e.target.value);
     }
 
-    if (mode === "edit") {
-        return (
-            <div id="text-slider">
-                <textarea 
-                    id="text-container" 
-                    ref={textContainerRef}
-                    className={theme}
-                    style={{ 
-                        top: "15vh", 
-                        height: "85vh", 
-                        left: (fontSize * 0.69) + "px", 
-                        width: `calc(100vw - ${(fontSize * 0.69)}px)`, 
-                        fontSize: fontSize + "px", 
-                        lineHeight: lineHeight }}
-                    value={text}
-                    placeholder={DEFAULT_TEXT}
-                    onChange={handleTextChange} />
-            </div>
-        );
-    } else {
-        return (
-            <div id="text-slider">
-                <pre 
-                    id="text-display"
-                    ref={textDisplayRef}
-                    className={theme}
-                    style={{ 
-                        left: (fontSize * 0.69) + 2 + "px", 
-                        top: (position + 2), 
-                        width: `calc(99vw - ${(fontSize * 0.69)}px)`, 
-                        fontSize: fontSize + "px", 
-                        lineHeight: lineHeight}}>
-                    {text}
-                </pre>
-                <p 
-                    id="text-marker"
-                    ref={textMarkerRef}
-                    className={theme}
-                    style={{ 
-                        left: (fontSize * 0.19),
-                        top: "15vh",
-                        fontSize: fontSize + "px",
-                        lineHeight: lineHeight  }}>&#129170;</p>
-            </div>
-        );
-    }
+    return (
+        <div id="text-slider">
+            <textarea
+                id="text-container"
+                ref={textContainerRef}
+                className={theme}
+                style={{
+                    display: mode === "edit" ? "initial" : "none",
+                    top: "15vh",
+                    height: "85vh",
+                    left: (fontSize * 0.69) + "px",
+                    width: `calc(100vw - ${(fontSize * 0.69)}px)`,
+                    fontSize: fontSize + "px",
+                    lineHeight: lineHeight
+                }}
+                value={text}
+                placeholder={DEFAULT_TEXT}
+                onChange={handleTextChange} />
+            <pre
+                id="text-display"
+                ref={textDisplayRef}
+                className={theme}
+                style={{
+                    display: mode === "edit" ? "none" : "initial",
+                    left: (fontSize * 0.69) + 2 + "px",
+                    top: (position + 2),
+                    width: `calc(99vw - ${(fontSize * 0.69)}px)`,
+                    fontSize: fontSize + "px",
+                    lineHeight: lineHeight
+                }}>
+                {text}
+            </pre>
+            <p
+                id="text-marker"
+                ref={textMarkerRef}
+                className={theme}
+                style={{
+                    display: mode === "edit" ? "none" : "initial",
+                    left: (fontSize * 0.19),
+                    top: "15vh",
+                    fontSize: fontSize + "px",
+                    lineHeight: lineHeight
+                }}>&#129170;</p>
+        </div>
+    );
 }
 
 export default Slider;
