@@ -100,7 +100,8 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
-        let intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF)) * (100 / textSpeed);
+        let intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF)) 
+        * (100 / textSpeed);
 
         if (isActive && (textDisplayRef.current.offsetHeight >
             ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
@@ -111,7 +112,7 @@ const Teleprompter = () => {
         }
 
         return () => clearInterval(intervalID);
-    }, [isActive, position, viewportWidth, fontSize, lineHeight, textSpeed]);
+    }, [isActive, position, viewportWidth, text, fontSize, lineHeight, textSpeed]);
 
     return (
         <div id="teleprompter" className={theme}>
