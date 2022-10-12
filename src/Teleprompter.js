@@ -98,6 +98,10 @@ const Teleprompter = () => {
         if (mode === "edit") textContainerRef.current.focus();
     }, [mode]);
 
+    const countEmptyLines = (input) => {
+        return (input.match(/^[ ]*$/gm) || []).length;
+    }
+
     useEffect(() => {
         let intervalID = null;
         let intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF)) 
