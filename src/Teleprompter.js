@@ -104,8 +104,8 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
-        let intervalValue = (text.length / (textDisplayRef.current.offsetHeight * READ_SPEED_COEF)) 
-        * (100 / textSpeed);
+        let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
+        let intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 
         if (isActive && (textDisplayRef.current.offsetHeight >
             ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
