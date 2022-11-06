@@ -30,9 +30,7 @@ const Teleprompter = () => {
         if (localStorage.getItem("text") === null) {
             localStorage.setItem("text", DEFAULT_TEXT);
             return DEFAULT_TEXT;
-        } else {
-            return localStorage.getItem("text");
-        }
+        } else return localStorage.getItem("text");
     });
 
     const [fontSize, setFontSize] = useState(() => {
@@ -51,18 +49,14 @@ const Teleprompter = () => {
         if (localStorage.getItem("lineHeight") === null) {
             localStorage.setItem("lineHeight", DEFAULT_LINE_HEIGHT);
             return DEFAULT_LINE_HEIGHT;
-        } else {
-            return localStorage.getItem("lineHeight");
-        }
+        } else return localStorage.getItem("lineHeight");
     });
 
     const [textSpeed, setTextSpeed] = useState(() => {
         if (localStorage.getItem("textSpeed") === null) {
             localStorage.setItem("textSpeed", DEFAULT_TEXT_SPEED);
             return DEFAULT_TEXT_SPEED;
-        } else {
-            return localStorage.getItem("textSpeed");
-        }
+        } else return localStorage.getItem("textSpeed");
     });
 
     const textContainerRef = useRef(null);
