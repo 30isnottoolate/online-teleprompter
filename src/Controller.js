@@ -3,6 +3,7 @@ import './Teleprompter.css';
 const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
+
     const handleIsActive = () => {
         if (isActive) {
             setIsActive(false);
@@ -67,8 +68,8 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
 
     const getControllerHeight = () => {
         if (viewportWidth < 701 && isMenuEnabled) {
-            return "40vh";
-        } else return "15vh";
+            return "300px";
+        } else return "120px";
     }
 
     const getGridTemplate = () => {
@@ -90,11 +91,9 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     return (
         <div
             id="controller"
-            className={isActive ? "transparent" : "visible"}
+            className={`${(isActive ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
             style={{
                 gridTemplateRows: getGridTemplate(),
-                backgroundColor: theme === "dark" ? "#222222" : "#dddddd",
-                color: theme === "dark" ? "#ffffff" : "#000000",
                 height: getControllerHeight()
             }}>
             <div id="logo">
