@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './Teleprompter.css';
+import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
 
@@ -45,17 +46,15 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 }}>
                 {text}
             </pre>
-            <p
-                id="text-marker"
-                ref={textMarkerRef}
-                className={theme}
-                style={{
-                    display: mode === "edit" ? "none" : "initial",
-                    left: (fontSize * 0.19),
-                    top: "15vh",
-                    fontSize: fontSize + "px",
-                    lineHeight: lineHeight
-                }}>&#129170;</p>
+            <Marker
+                textMarkerRef={textMarkerRef}
+                fontSize={fontSize}
+                lineHeight={lineHeight}
+                mode={mode}
+                color={theme === "dark" ? "#d8e4fd" : "#020d26"}
+                left={fontSize * 0.19}
+                top="15vh"
+            />
         </div>
     );
 }
