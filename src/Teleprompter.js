@@ -11,7 +11,7 @@ const DEFAULT_TEXT_SPEED = 100;
 const READ_SPEED_COEF = 0.0151; // char/ms
 
 const Teleprompter = () => {
-    const [isActive, setIsActive] = useState(false);
+    const [active, setActive] = useState(false);
     const [mode, setMode] = useState("edit"); // edit or read
     const [isMenuEnabled, setIsMenuEnabled] = useState(false);
     const [position, setPosition] = useState(0);
@@ -101,17 +101,17 @@ const Teleprompter = () => {
         let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
         let intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 
-        if (isActive) {
+        if (active) {
             intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
         }
 
         return () => clearInterval(intervalID);
-    }, [isActive, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+    }, [active, viewportWidth, text, fontSize, lineHeight, textSpeed]);
 
     useEffect(() => {
 		if (textDisplayRef.current && textMarkerRef.current) {
 			if (!(textDisplayRef.current.offsetHeight > ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
-				setIsActive(false);
+				setActive(false);
 			}
 		}
 	}, [position, fontSize, lineHeight]);
@@ -119,7 +119,7 @@ const Teleprompter = () => {
     return (
         <div id="teleprompter" className={theme}>
             <Controller
-                isActive={isActive} setIsActive={setIsActive}
+                active={active} setActive={setActive}
                 mode={mode} setMode={setMode}
                 isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
                 setPosition={setPosition}

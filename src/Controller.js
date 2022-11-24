@@ -1,21 +1,21 @@
 import './Teleprompter.css';
 
-const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
+const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
 
-    const handleIsActive = () => {
-        if (isActive) {
-            setIsActive(false);
+    const handleActive = () => {
+        if (active) {
+            setActive(false);
         } else {
-            setIsActive(true);
+            setActive(true);
             setMode("read");
             setIsMenuEnabled(false);
         }
     }
 
     const handleReset = () => {
-        setIsActive(false);
+        setActive(false);
         setPosition(window.innerHeight * 0.15);
     }
 
@@ -25,7 +25,7 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
             setIsMenuEnabled(false);
         } else {
             setMode("edit");
-            setIsActive(false);
+            setActive(false);
             setPosition(window.innerHeight * 0.15);
         }
     }
@@ -91,7 +91,7 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
     return (
         <div
             id="controller"
-            className={`${(isActive ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
+            className={`${(active ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
             style={{
                 gridTemplateRows: getGridTemplate(),
                 height: getControllerHeight()
@@ -105,8 +105,8 @@ const Controller = ({ isActive, setIsActive, mode, setMode, theme, setTheme,
                 <button
                     id="start-stop"
                     className="main-buttons"
-                    onClick={handleIsActive} >
-                    {isActive ? "Stop" : "Start"}
+                    onClick={handleActive} >
+                    {active ? "Stop" : "Start"}
                 </button>
                 <button
                     id="reset"
