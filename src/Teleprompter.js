@@ -101,16 +101,20 @@ const Teleprompter = () => {
         let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
         let intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 
-        if (isActive && (textDisplayRef.current.offsetHeight >
-            ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+        if (isActive) {
             intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
-        } else {
-            setIsActive(false);
-            clearInterval(intervalID);
         }
 
         return () => clearInterval(intervalID);
-    }, [isActive, position, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+    }, [isActive, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+
+    useEffect(() => {
+		if (textDisplayRef.current && textMarkerRef.current) {
+			if (!(textDisplayRef.current.offsetHeight > ((-1) * position + fontSize * lineHeight + textMarkerRef.current.offsetTop))) {
+				setIsActive(false);
+			}
+		}
+	}, [position, fontSize, lineHeight]);
 
     return (
         <div id="teleprompter" className={theme}>
