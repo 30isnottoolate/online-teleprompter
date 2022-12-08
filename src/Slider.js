@@ -5,7 +5,7 @@ import Marker from "./Marker";
 const PLACEHOLDER_TEXT = "Type something...";
 
 const Slider = ({ mode, position, setPosition, theme, text, setText,
-    fontSize, lineHeight, textContainerRef, textDisplayRef, textMarkerRef }) => {
+    fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
     useEffect(() => {
         setPosition(window.innerHeight * 0.15);
     }, [fontSize, lineHeight, text, setPosition]);
@@ -47,7 +47,6 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 {text}
             </pre>
             <Marker
-                textMarkerRef={textMarkerRef}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
                 mode={mode}

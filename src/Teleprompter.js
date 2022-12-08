@@ -61,7 +61,6 @@ const Teleprompter = () => {
 
     const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
-    const textMarkerRef = useRef(null);
 
     useEffect(() => {
         window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
@@ -109,12 +108,12 @@ const Teleprompter = () => {
     }, [active, viewportWidth, text, fontSize, lineHeight, textSpeed]);
 
     useEffect(() => {
-		if (textDisplayRef.current) {
-			if (position < (window.innerHeight * 0.15 - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
-				setActive(false);
-			}
-		}
-	}, [position, fontSize, lineHeight]);
+        if (textDisplayRef.current) {
+            if (position < (window.innerHeight * 0.15 - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
+                setActive(false);
+            }
+        }
+    }, [position, fontSize, lineHeight]);
 
     return (
         <div id="teleprompter" className={theme}>
@@ -128,7 +127,8 @@ const Teleprompter = () => {
                 setText={setText}
                 fontSize={fontSize} setFontSize={setFontSize}
                 lineHeight={lineHeight} setLineHeight={setLineHeight}
-                textSpeed={textSpeed} setTextSpeed={setTextSpeed} />
+                textSpeed={textSpeed} setTextSpeed={setTextSpeed}
+            />
             <Slider
                 mode={mode}
                 position={position} setPosition={setPosition}
@@ -138,7 +138,7 @@ const Teleprompter = () => {
                 lineHeight={lineHeight}
                 textContainerRef={textContainerRef}
                 textDisplayRef={textDisplayRef}
-                textMarkerRef={textMarkerRef} />
+            />
         </div>
     );
 }

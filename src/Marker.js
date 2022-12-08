@@ -1,9 +1,9 @@
 import React from 'react';
 import './Teleprompter.css';
 
-const Marker = ({ textMarkerRef, fontSize, lineHeight, color, mode, left, top }) => {
+const Marker = ({ fontSize, lineHeight, color, mode, left, top }) => {
     return (
-        <div ref={textMarkerRef}>
+        <div>
             <svg
                 className="text-marker"
                 height={fontSize}
