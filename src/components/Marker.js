@@ -1,5 +1,4 @@
 import React from 'react';
-import './Teleprompter.css';
 
 const Marker = ({ fontSize, lineHeight, color, mode, left, top }) => {
     return (

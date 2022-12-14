@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import './Teleprompter.css';
 import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
@@ -39,7 +38,7 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 style={{
                     display: mode === "edit" ? "none" : "initial",
                     left: (fontSize * 0.69) + 2 + "px",
-                    top: (position + 2),
+                    top: position,
                     width: `calc(99vw - ${(fontSize * 0.69)}px)`,
                     fontSize: fontSize + "px",
                     lineHeight: lineHeight

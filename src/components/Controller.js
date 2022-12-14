@@ -1,5 +1,3 @@
-import './Teleprompter.css';
-
 const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {

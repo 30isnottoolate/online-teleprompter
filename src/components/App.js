@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './Teleprompter.css';
+import './App.css';
 import Controller from './Controller.js';
 import Slider from './Slider.js';
 

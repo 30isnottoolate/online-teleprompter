@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Teleprompter from './Teleprompter.js';
+import App from './components/App.js';
 
-const container = ReactDOM.createRoot(document.getElementById('app-container'));
-container.render(
-  <React.StrictMode>
-    <Teleprompter />
-  </React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>
 );
