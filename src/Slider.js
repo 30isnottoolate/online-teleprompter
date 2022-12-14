@@ -22,7 +22,7 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 className={theme}
                 style={{
                     display: mode === "edit" ? "initial" : "none",
-                    top: "15vh",
+                    top: "calc(15vh - 2px)",
                     height: "85vh",
                     left: (fontSize * 0.69) + "px",
                     width: `calc(100vw - ${(fontSize * 0.69)}px)`,
@@ -50,7 +50,7 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 fontSize={fontSize}
                 lineHeight={lineHeight}
                 mode={mode}
-                color={theme === "dark" ? "#d8e4fd" : "#020d26"}
+                color={theme === "dark" ? "#eff6ff" : "#011327"}
                 left={fontSize * 0.19}
                 top="15vh"
             />
