@@ -30,6 +30,7 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 }}
                 value={text}
                 placeholder={PLACEHOLDER_TEXT}
+                spellCheck={false}
                 onChange={handleTextChange} />
             <pre
                 id="text-display"
