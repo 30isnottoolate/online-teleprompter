@@ -14,7 +14,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
 
     const handleReset = () => {
         setActive(false);
-        setPosition(window.innerHeight * 0.15);
+        setPosition(7.5 * remValue);
     }
 
     const handleMode = () => {
@@ -24,7 +24,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         } else {
             setMode("edit");
             setActive(false);
-            setPosition(window.innerHeight * 0.15);
+            setPosition(7.5 * remValue);
         }
     }
 
@@ -37,7 +37,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     }
 
     const handleDefault = () => {
-        if (viewportWidth < 701) {
+        if (viewportWidth < 44) {
             setFontSize(40);
         } else setFontSize(100);
         
@@ -51,13 +51,13 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     }
 
     const getButtonPresence = () => {
-        if (viewportWidth < 701) {
+        if (viewportWidth < 44) {
             return "initial";
         } else return "none";
     }
 
     const getDivPresence = () => {
-        if (viewportWidth < 701) {
+        if (viewportWidth < 44) {
             if (isMenuEnabled) {
                 return "grid";
             } else return "none";
@@ -65,26 +65,29 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     }
 
     const getControllerHeight = () => {
-        if (viewportWidth < 701 && isMenuEnabled) {
-            return "300px";
-        } else return "120px";
+        if (viewportWidth < 44 && isMenuEnabled) {
+            return "18.75rem";
+        } else return "7.5rem";
     }
 
     const getGridTemplate = () => {
-        if (viewportWidth < 701) {
+        if (viewportWidth < 44) {
             if (isMenuEnabled) {
                 return "repeat(5, auto)";
             } else return "repeat(2, auto)";
         } else return "auto";
     }
 
+    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
     const handleIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
 
-    const handleFontSize = (e) => setFontSize(e.target.value);
+    const handleFontSize = (e) => setFontSize(e.target.value / remValue);
 
     const handleLineHeight = (e) => setLineHeight(e.target.value);
 
     const handleTextSpeed = (e) => setTextSpeed(e.target.value);
+
 
     return (
         <div
@@ -144,9 +147,9 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     id="font-size"
                     className="settings-slider"
                     type="range" min="40" max="150" step="1"
-                    value={fontSize}
+                    value={fontSize * remValue}
                     onChange={handleFontSize} />
-                <span>{fontSize}</span>
+                <span>{fontSize * remValue}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
                     id="line-height"
