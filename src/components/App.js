@@ -15,7 +15,11 @@ const Teleprompter = () => {
     const [mode, setMode] = useState("edit"); // edit or read
     const [isMenuEnabled, setIsMenuEnabled] = useState(false);
     const [position, setPosition] = useState(0);
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    const [viewportWidth, setViewportWidth] = useState(() => {
+        let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
+        return window.innerWidth / remValue;
+    });
 
     const [theme, setTheme] = useState(() => {
         if (localStorage.getItem("theme") === null) {
@@ -35,7 +39,7 @@ const Teleprompter = () => {
 
     const [fontSize, setFontSize] = useState(() => {
         if (localStorage.getItem("fontSize") === null) {
-            if (viewportWidth < 701) {
+            if (viewportWidth < 44) {
                 localStorage.setItem("fontSize", 40);
                 return 40;
             } else {
@@ -63,8 +67,11 @@ const Teleprompter = () => {
     const textDisplayRef = useRef(null);
 
     useEffect(() => {
-        window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-        return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth));
+        let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
+        window.addEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
+
+        return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
     }, [viewportWidth]);
 
     useEffect(() => {
@@ -91,10 +98,6 @@ const Teleprompter = () => {
         if (mode === "edit") textContainerRef.current.focus();
     }, [mode]);
 
-    const countEmptyLines = (input) => {
-        return (input.match(/^[ ]*$/gm) || []).length;
-    }
-
     useEffect(() => {
         let intervalID = null;
         let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
@@ -109,11 +112,17 @@ const Teleprompter = () => {
 
     useEffect(() => {
         if (textDisplayRef.current) {
-            if (position < (window.innerHeight * 0.15 - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
+            if (position < (7.5 * remValue - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
                 setActive(false);
             }
         }
     }, [position, fontSize, lineHeight]);
+
+    const countEmptyLines = (input) => {
+        return (input.match(/^[ ]*$/gm) || []).length;
+    }
+    
+    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
     return (
         <div id="teleprompter" className={theme}>
