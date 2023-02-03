@@ -6,12 +6,14 @@ const PLACEHOLDER_TEXT = "Type something...";
 const Slider = ({ mode, position, setPosition, theme, text, setText,
     fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
     useEffect(() => {
-        setPosition(window.innerHeight * 0.15);
+        setPosition(7.5 * remValue);
     }, [fontSize, lineHeight, text, setPosition]);
 
     const handleTextChange = (e) => {
         setText(e.target.value);
     }
+
+    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
     return (
         <div id="text-slider">
@@ -21,11 +23,11 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 className={theme}
                 style={{
                     display: mode === "edit" ? "initial" : "none",
-                    top: "calc(15vh - 2px)",
-                    height: "85vh",
-                    left: (fontSize * 0.69) + "px",
-                    width: `calc(100vw - ${(fontSize * 0.69)}px)`,
-                    fontSize: fontSize + "px",
+                    top: "7.5rem",
+                    height: "calc(100vh - 7.5rem)",
+                    left: `${fontSize * 0.69}rem`,
+                    width: `calc(100vw - ${fontSize * 0.69}rem)`,
+                    fontSize: `${fontSize}rem`,
                     lineHeight: lineHeight
                 }}
                 value={text}
@@ -38,10 +40,10 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 className={theme}
                 style={{
                     display: mode === "edit" ? "none" : "initial",
-                    left: (fontSize * 0.69) + 2 + "px",
+                    left: `${fontSize * 0.69}rem`,
                     top: position,
-                    width: `calc(99vw - ${(fontSize * 0.69)}px)`,
-                    fontSize: fontSize + "px",
+                    width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
+                    fontSize: `${fontSize}rem`,
                     lineHeight: lineHeight
                 }}>
                 {text}
@@ -51,8 +53,7 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 lineHeight={lineHeight}
                 mode={mode}
                 color={theme === "dark" ? "#eff6ff" : "#011327"}
-                left={fontSize * 0.19}
-                top="15vh"
+                top="7.5rem"
             />
         </div>
     );
