@@ -2,6 +2,8 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
 
+    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
     const changeActive = () => {
         if (active) {
             setActive(false);
@@ -17,6 +19,17 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         setPosition(7.5 * remValue);
     }
 
+    const clearText = () => {
+        setText("");
+        setMode("edit");
+    }
+
+    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
+
+    const divPresence = viewportWidth < 44 ?
+        isMenuEnabled ? "grid" : "none"
+        : "grid";
+
     const changeMode = () => {
         if (mode === "edit") {
             setMode("read");
@@ -30,60 +43,32 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
 
     const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
 
+    const changeFontSize = (e) => setFontSize(e.target.value / remValue);
+    const changeLineHeight = (e) => setLineHeight(e.target.value);
+    const changeTextSpeed = (e) => setTextSpeed(e.target.value);
+
     const defaultSettings = () => {
         if (viewportWidth < 44) {
             setFontSize(2.5);
         } else setFontSize(6.25);
-        
+
         setLineHeight(1.2);
         setTextSpeed(100);
     }
 
-    const clearText = () => {
-        setText("");
-        setMode("edit");
-    }
+    const gridTemplate = viewportWidth < 44 ?
+        isMenuEnabled ? "repeat(5, auto)" : "repeat(2, auto)"
+        : "auto";
 
-    const divPresence = () => {
-        if (viewportWidth < 44) {
-            if (isMenuEnabled) {
-                return "grid";
-            } else return "none";
-        } else return "grid";
-    }
-
-    const controllerHeight = () => {
-        if (viewportWidth < 44 && isMenuEnabled) {
-            return "18.75rem";
-        } else return "7.5rem";
-    }
-
-    const gridTemplate = () => {
-        if (viewportWidth < 44) {
-            if (isMenuEnabled) {
-                return "repeat(5, auto)";
-            } else return "repeat(2, auto)";
-        } else return "auto";
-    }
-
-    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
-
-    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
-
-    const changeFontSize = (e) => setFontSize(e.target.value / remValue);
-
-    const changeLineHeight = (e) => setLineHeight(e.target.value);
-
-    const changeTextSpeed = (e) => setTextSpeed(e.target.value);
-
+    const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "18.75rem" : "7.5rem";
 
     return (
         <div
             id="controller"
             className={`${(active ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
             style={{
-                gridTemplateRows: gridTemplate(),
-                height: controllerHeight()
+                gridTemplateRows: gridTemplate,
+                height: controllerHeight
             }}>
             <div id="logo">
                 <h1>
@@ -104,15 +89,22 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     disabled={mode === "edit" ? true : false}>
                     Reset
                 </button>
-                <button id="clear" className="main-buttons" onClick={clearText} >Clear</button>
                 <button
-                    id="settings-button" 
+                    id="clear"
+                    className="main-buttons"
+                    onClick={clearText} >
+                    Clear
+                </button>
+                <button
+                    id="settings-button"
                     className="main-buttons"
                     onClick={changeIsMenuEnabled}>
                     Settings
                 </button>
             </div>
-            <div id="mode-group" style={{ display: divPresence() }} >
+            <div
+                id="mode-group"
+                style={{ display: divPresence }} >
                 <span>Current mode: </span>
                 <button
                     id="mode"
@@ -128,7 +120,9 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     {theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
-            <div id="settings" style={{ display: divPresence() }} >
+            <div
+                id="settings"
+                style={{ display: divPresence }} >
                 <label htmlFor="font-size">Font size: </label>
                 <input
                     id="font-size"
@@ -154,7 +148,9 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     onChange={changeTextSpeed} />
                 <span>{textSpeed}</span>
             </div>
-            <div id="default-container" style={{ display: divPresence() }} >
+            <div
+                id="default-container"
+                style={{ display: divPresence }} >
                 <button
                     id="default"
                     onClick={defaultSettings} >
