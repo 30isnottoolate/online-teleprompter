@@ -5,13 +5,12 @@ const PLACEHOLDER_TEXT = "Type something...";
 
 const Slider = ({ mode, position, setPosition, theme, text, setText,
     fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
+
     useEffect(() => {
         setPosition(7.5 * remValue);
     }, [fontSize, lineHeight, text, setPosition]);
 
-    const handleTextChange = (e) => {
-        setText(e.target.value);
-    }
+    const handleTextChange = (e) => setText(e.target.value);
 
     let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
