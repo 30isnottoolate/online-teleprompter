@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Marker = ({ fontSize, lineHeight, color, mode, top }) => {
     return (
         <div>
