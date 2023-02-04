@@ -11,18 +11,16 @@ const DEFAULT_TEXT_SPEED = 100;
 const READ_SPEED_COEF = 0.0151; // char/ms
 
 const Teleprompter = () => {
+    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
     const [active, setActive] = useState(false);
     const [mode, setMode] = useState("edit"); // edit or read
     const [isMenuEnabled, setIsMenuEnabled] = useState(false);
     const [position, setPosition] = useState(0);
-    const [viewportWidth, setViewportWidth] = useState(() => {
-        let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
-
-        return window.innerWidth / remValue;
-    });
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth / remValue);
 
     const [theme, setTheme] = useState(() => {
-        if (localStorage.getItem("theme") === null) {
+        if (!localStorage.getItem("theme")) {
             localStorage.setItem("theme", DEFAULT_THEME);
             return DEFAULT_THEME;
         } else {
@@ -31,33 +29,33 @@ const Teleprompter = () => {
     });
 
     const [text, setText] = useState(() => {
-        if (localStorage.getItem("text") === null) {
+        if (!localStorage.getItem("text")) {
             localStorage.setItem("text", DEFAULT_TEXT);
             return DEFAULT_TEXT;
         } else return localStorage.getItem("text");
     });
 
     const [fontSize, setFontSize] = useState(() => {
-        if (localStorage.getItem("fontSize") === null) {
+        if (!localStorage.getItem("fontSize")) {
             if (viewportWidth < 44) {
-                localStorage.setItem("fontSize", 40);
-                return 40;
+                localStorage.setItem("fontSize", 40 / remValue);
+                return 40 / remValue;
             } else {
-                localStorage.setItem("fontSize", DEFAULT_FONT_SIZE);
-                return DEFAULT_FONT_SIZE;
+                localStorage.setItem("fontSize", DEFAULT_FONT_SIZE / remValue);
+                return DEFAULT_FONT_SIZE / remValue;
             }
         } else return localStorage.getItem("fontSize");
     });
 
     const [lineHeight, setLineHeight] = useState(() => {
-        if (localStorage.getItem("lineHeight") === null) {
+        if (!localStorage.getItem("lineHeight")) {
             localStorage.setItem("lineHeight", DEFAULT_LINE_HEIGHT);
             return DEFAULT_LINE_HEIGHT;
         } else return localStorage.getItem("lineHeight");
     });
 
     const [textSpeed, setTextSpeed] = useState(() => {
-        if (localStorage.getItem("textSpeed") === null) {
+        if (!localStorage.getItem("textSpeed")) {
             localStorage.setItem("textSpeed", DEFAULT_TEXT_SPEED);
             return DEFAULT_TEXT_SPEED;
         } else return localStorage.getItem("textSpeed");
@@ -76,6 +74,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
+        document.body.className = theme;
     }, [theme]);
 
     useEffect(() => {
@@ -100,7 +99,8 @@ const Teleprompter = () => {
 
     useEffect(() => {
         let intervalID = null;
-        let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - fontSize * lineHeight * countEmptyLines(text);
+        let countEmptyLines = (input) => (input.match(/^[ ]*$/gm) || []).length;
+        let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * countEmptyLines(text);
         let intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 
         if (active) {
@@ -112,7 +112,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         if (textDisplayRef.current) {
-            if (position < (7.5 * remValue - textDisplayRef.current.offsetHeight + fontSize * lineHeight)) {
+            if (position < (7.5 * remValue - textDisplayRef.current.offsetHeight + remValue * fontSize * lineHeight)) {
                 setActive(false);
             }
         }
@@ -121,11 +121,9 @@ const Teleprompter = () => {
     const countEmptyLines = (input) => {
         return (input.match(/^[ ]*$/gm) || []).length;
     }
-    
-    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
     return (
-        <div id="teleprompter" className={theme}>
+        <>
             <Controller
                 active={active} setActive={setActive}
                 mode={mode} setMode={setMode}
@@ -141,14 +139,13 @@ const Teleprompter = () => {
             <Slider
                 mode={mode}
                 position={position} setPosition={setPosition}
-                theme={theme}
                 text={text} setText={setText}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
                 textContainerRef={textContainerRef}
                 textDisplayRef={textDisplayRef}
             />
-        </div>
+        </>
     );
 }
 

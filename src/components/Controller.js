@@ -65,7 +65,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     return (
         <div
             id="controller"
-            className={`${(active ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
+            className={active ? "transparent" : "visible"}
             style={{
                 gridTemplateRows: gridTemplate,
                 height: controllerHeight
@@ -130,7 +130,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     type="range" min="40" max="150" step="1"
                     value={fontSize * remValue}
                     onChange={changeFontSize} />
-                <span>{fontSize * remValue}</span>
+                <span>{parseInt(fontSize * remValue)}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
                     id="line-height"

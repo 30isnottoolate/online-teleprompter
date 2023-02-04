@@ -3,7 +3,7 @@ import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
 
-const Slider = ({ mode, position, setPosition, theme, text, setText,
+const Slider = ({ mode, position, setPosition, text, setText,
     fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
 
     useEffect(() => {
@@ -19,7 +19,6 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
             <textarea
                 id="text-container"
                 ref={textContainerRef}
-                className={theme}
                 style={{
                     display: mode === "edit" ? "initial" : "none",
                     height: "calc(100vh - 7.5rem)",
@@ -35,7 +34,6 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
             <pre
                 id="text-display"
                 ref={textDisplayRef}
-                className={theme}
                 style={{
                     display: mode === "edit" ? "none" : "initial",
                     left: `${fontSize * 0.69}rem`,
@@ -46,12 +44,11 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 }}>
                 {text}
             </pre>
+            {mode === "read" && 
             <Marker
                 fontSize={fontSize}
                 lineHeight={lineHeight}
-                mode={mode}
-                color={theme === "dark" ? "#eff6ff" : "#011327"}
-            />
+            />}
         </div>
     );
 }
