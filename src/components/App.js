@@ -98,9 +98,10 @@ const Teleprompter = () => {
     }, [mode]);
 
     useEffect(() => {
+        const emptyLines = (input) => (input.match(/^[ ]*$/gm) || []).length;
+
         let intervalID = null;
-        let countEmptyLines = (input) => (input.match(/^[ ]*$/gm) || []).length;
-        let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * countEmptyLines(text);
+        let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * emptyLines(text);
         let intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
 
         if (active) {
@@ -118,10 +119,6 @@ const Teleprompter = () => {
         }
     }, [position, fontSize, lineHeight]);
 
-    const countEmptyLines = (input) => {
-        return (input.match(/^[ ]*$/gm) || []).length;
-    }
-
     return (
         <>
             <Controller
@@ -137,8 +134,10 @@ const Teleprompter = () => {
                 textSpeed={textSpeed} setTextSpeed={setTextSpeed}
             />
             <Slider
+                active={active}
                 mode={mode}
                 position={position} setPosition={setPosition}
+                viewportWidth={viewportWidth}
                 text={text} setText={setText}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
