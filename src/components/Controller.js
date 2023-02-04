@@ -2,7 +2,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
 
-    const handleActive = () => {
+    const changeActive = () => {
         if (active) {
             setActive(false);
         } else {
@@ -12,12 +12,12 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         }
     }
 
-    const handleReset = () => {
+    const resetSlider = () => {
         setActive(false);
         setPosition(7.5 * remValue);
     }
 
-    const handleMode = () => {
+    const changeMode = () => {
         if (mode === "edit") {
             setMode("read");
             setIsMenuEnabled(false);
@@ -28,7 +28,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         }
     }
 
-    const handleTheme = () => {
+    const changeTheme = () => {
         if (theme === "dark") {
             setTheme("light");
         } else {
@@ -36,27 +36,27 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         }
     }
 
-    const handleDefault = () => {
+    const defaultSettings = () => {
         if (viewportWidth < 44) {
-            setFontSize(40);
-        } else setFontSize(100);
+            setFontSize(2.5);
+        } else setFontSize(6.25);
         
         setLineHeight(1.2);
         setTextSpeed(100);
     }
 
-    const handleClear = () => {
+    const clearText = () => {
         setText("");
         setMode("edit");
     }
 
-    const getButtonPresence = () => {
+    const buttonPresence = () => {
         if (viewportWidth < 44) {
             return "initial";
         } else return "none";
     }
 
-    const getDivPresence = () => {
+    const divPresence = () => {
         if (viewportWidth < 44) {
             if (isMenuEnabled) {
                 return "grid";
@@ -64,13 +64,13 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         } else return "grid";
     }
 
-    const getControllerHeight = () => {
+    const controllerHeight = () => {
         if (viewportWidth < 44 && isMenuEnabled) {
             return "18.75rem";
         } else return "7.5rem";
     }
 
-    const getGridTemplate = () => {
+    const gridTemplate = () => {
         if (viewportWidth < 44) {
             if (isMenuEnabled) {
                 return "repeat(5, auto)";
@@ -80,13 +80,13 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
 
     let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
-    const handleIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
+    const changeIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
 
-    const handleFontSize = (e) => setFontSize(e.target.value / remValue);
+    const changeFontSize = (e) => setFontSize(e.target.value / remValue);
 
-    const handleLineHeight = (e) => setLineHeight(e.target.value);
+    const changeLineHeight = (e) => setLineHeight(e.target.value);
 
-    const handleTextSpeed = (e) => setTextSpeed(e.target.value);
+    const changeTextSpeed = (e) => setTextSpeed(e.target.value);
 
 
     return (
@@ -94,8 +94,8 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
             id="controller"
             className={`${(active ? "transparent" : "visible")} ${(theme === "dark" ? "dark-controller" : "light-controller")}`}
             style={{
-                gridTemplateRows: getGridTemplate(),
-                height: getControllerHeight()
+                gridTemplateRows: gridTemplate(),
+                height: controllerHeight()
             }}>
             <div id="logo">
                 <h1>
@@ -106,49 +106,49 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                 <button
                     id="start-stop"
                     className="main-buttons"
-                    onClick={handleActive} >
+                    onClick={changeActive} >
                     {active ? "Stop" : "Start"}
                 </button>
                 <button
                     id="reset"
                     className="main-buttons"
-                    onClick={handleReset}
+                    onClick={resetSlider}
                     disabled={mode === "edit" ? true : false}>
                     Reset
                 </button>
-                <button id="clear" className="main-buttons" onClick={handleClear} >Clear</button>
+                <button id="clear" className="main-buttons" onClick={clearText} >Clear</button>
                 <button
                     id="settings-button" 
                     className="main-buttons"
-                    style={{ display: getButtonPresence() }}
-                    onClick={handleIsMenuEnabled}>
+                    style={{ display: buttonPresence() }}
+                    onClick={changeIsMenuEnabled}>
                     Settings
                 </button>
             </div>
-            <div id="mode-group" style={{ display: getDivPresence() }} >
+            <div id="mode-group" style={{ display: divPresence() }} >
                 <span>Current mode: </span>
                 <button
                     id="mode"
                     className="mode-buttons"
-                    onClick={handleMode} >
+                    onClick={changeMode} >
                     {mode === "edit" ? "Edit" : "Read"}
                 </button>
                 <span>Color theme: </span>
                 <button
                     id="theme"
                     className="mode-buttons"
-                    onClick={handleTheme} >
+                    onClick={changeTheme} >
                     {theme === "dark" ? "Dark" : "Light"}
                 </button>
             </div>
-            <div id="settings" style={{ display: getDivPresence() }} >
+            <div id="settings" style={{ display: divPresence() }} >
                 <label htmlFor="font-size">Font size: </label>
                 <input
                     id="font-size"
                     className="settings-slider"
                     type="range" min="40" max="150" step="1"
                     value={fontSize * remValue}
-                    onChange={handleFontSize} />
+                    onChange={changeFontSize} />
                 <span>{fontSize * remValue}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
@@ -156,7 +156,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     className="settings-slider"
                     type="range" min="1" max="1.5" step="0.01"
                     value={lineHeight}
-                    onChange={handleLineHeight} />
+                    onChange={changeLineHeight} />
                 <span>{(parseFloat(lineHeight)).toFixed(2)}</span>
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
@@ -164,13 +164,13 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     className="settings-slider"
                     type="range" min="20" max="200" step="1"
                     value={textSpeed}
-                    onChange={handleTextSpeed} />
+                    onChange={changeTextSpeed} />
                 <span>{textSpeed}</span>
             </div>
-            <div id="default-container" style={{ display: getDivPresence() }} >
+            <div id="default-container" style={{ display: divPresence() }} >
                 <button
                     id="default"
-                    onClick={handleDefault} >
+                    onClick={defaultSettings} >
                     Default
                 </button>
             </div>
