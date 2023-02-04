@@ -103,6 +103,10 @@ button:active {
     justify-content: center;
 }
 
+#settings-button {
+    display: none;
+}
+
 #mode-group {
     display: grid;
     grid-template-columns: auto auto;
@@ -277,6 +281,10 @@ textarea::-webkit-input-placeholder {
         gap: 2vw;
         grid-column: 1 / 2;
         grid-row: 2 / 3;
+    }
+
+    #settings-button {
+        display: initial;
     }
 
     #mode-group {

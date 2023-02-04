@@ -28,13 +28,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         }
     }
 
-    const changeTheme = () => {
-        if (theme === "dark") {
-            setTheme("light");
-        } else {
-            setTheme("dark");
-        }
-    }
+    const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
 
     const defaultSettings = () => {
         if (viewportWidth < 44) {
@@ -48,12 +42,6 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     const clearText = () => {
         setText("");
         setMode("edit");
-    }
-
-    const buttonPresence = () => {
-        if (viewportWidth < 44) {
-            return "initial";
-        } else return "none";
     }
 
     const divPresence = () => {
@@ -80,7 +68,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
 
     let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
-    const changeIsMenuEnabled = () => setIsMenuEnabled(!isMenuEnabled);
+    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
 
     const changeFontSize = (e) => setFontSize(e.target.value / remValue);
 
@@ -120,7 +108,6 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                 <button
                     id="settings-button" 
                     className="main-buttons"
-                    style={{ display: buttonPresence() }}
                     onClick={changeIsMenuEnabled}>
                     Settings
                 </button>
