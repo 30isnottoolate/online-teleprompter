@@ -23,7 +23,6 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 className={theme}
                 style={{
                     display: mode === "edit" ? "initial" : "none",
-                    /* top: "7.5rem", */
                     height: "calc(100vh - 7.5rem)",
                     left: `${fontSize * 0.69}rem`,
                     width: `calc(100vw - ${fontSize * 0.69}rem)`,
@@ -53,7 +52,6 @@ const Slider = ({ mode, position, setPosition, theme, text, setText,
                 lineHeight={lineHeight}
                 mode={mode}
                 color={theme === "dark" ? "#eff6ff" : "#011327"}
-                /* top="7.5rem" */
             />
         </div>
     );
