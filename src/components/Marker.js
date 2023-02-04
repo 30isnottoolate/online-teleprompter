@@ -1,12 +1,11 @@
-const Marker = ({ fontSize, lineHeight, top }) => {
+const Marker = ({ fontSize, lineHeight }) => {
     return (
         <div>
             <svg
                 className="text-marker"
                 height={fontSize + "rem"}
                 style={{ 
-                    left: `${fontSize * 0.19}rem`, 
-                    top: top, 
+                    left: `${fontSize * 0.19}rem`,
                     padding: `${fontSize * (lineHeight - 1) / 2}rem 0` 
                 }}
                 viewBox="0 0 57 150">

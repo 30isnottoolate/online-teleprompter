@@ -6,13 +6,13 @@ const PLACEHOLDER_TEXT = "Type something...";
 const Slider = ({ mode, position, setPosition, text, setText,
     fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
 
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
     useEffect(() => {
         setPosition(7.5 * remValue);
     }, [fontSize, lineHeight, text, setPosition]);
 
     const handleTextChange = (e) => setText(e.target.value);
-
-    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
     return (
         <div id="text-slider">
@@ -44,11 +44,11 @@ const Slider = ({ mode, position, setPosition, text, setText,
                 }}>
                 {text}
             </pre>
-            {mode === "read" && 
-            <Marker
-                fontSize={fontSize}
-                lineHeight={lineHeight}
-            />}
+            {mode === "read" &&
+                <Marker
+                    fontSize={fontSize}
+                    lineHeight={lineHeight}
+                />}
         </div>
     );
 }

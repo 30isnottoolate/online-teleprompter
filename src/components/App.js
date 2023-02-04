@@ -11,7 +11,7 @@ const DEFAULT_TEXT_SPEED = 100;
 const READ_SPEED_COEF = 0.0151; // char/ms
 
 const Teleprompter = () => {
-    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
     const [active, setActive] = useState(false);
     const [mode, setMode] = useState("edit"); // edit or read
@@ -65,8 +65,6 @@ const Teleprompter = () => {
     const textDisplayRef = useRef(null);
 
     useEffect(() => {
-        let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
-
         window.addEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
 
         return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
@@ -134,10 +132,8 @@ const Teleprompter = () => {
                 textSpeed={textSpeed} setTextSpeed={setTextSpeed}
             />
             <Slider
-                active={active}
                 mode={mode}
                 position={position} setPosition={setPosition}
-                viewportWidth={viewportWidth}
                 text={text} setText={setText}
                 fontSize={fontSize}
                 lineHeight={lineHeight}

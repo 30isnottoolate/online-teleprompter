@@ -2,7 +2,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
 
-    let remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
     const changeActive = () => {
         if (active) {
@@ -130,7 +130,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     type="range" min="40" max="150" step="1"
                     value={fontSize * remValue}
                     onChange={changeFontSize} />
-                <span>{parseInt(fontSize * remValue)}</span>
+                <span>{(fontSize * remValue).toFixed(0)}</span>
                 <label htmlFor="line-height">Line height: </label>
                 <input
                     id="line-height"
@@ -138,7 +138,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     type="range" min="1" max="1.5" step="0.01"
                     value={lineHeight}
                     onChange={changeLineHeight} />
-                <span>{(parseFloat(lineHeight)).toFixed(2)}</span>
+                <span>{lineHeight.toFixed(2)}</span>
                 <label htmlFor="text-speed">Text speed: </label>
                 <input
                     id="text-speed"
