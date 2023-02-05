@@ -6,26 +6,6 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
 
     const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
-    const changeActive = () => {
-        if (active) {
-            setActive(false);
-        } else {
-            setActive(true);
-            setMode("read");
-            setIsMenuEnabled(false);
-        }
-    }
-
-    const resetSlider = () => {
-        setActive(false);
-        setPosition(7.5 * remValue);
-    }
-
-    const clearText = () => {
-        setText("");
-        setMode("edit");
-    }
-
     const divPresence = viewportWidth < 44 ?
         isMenuEnabled ? "grid" : "none"
         : "grid";
@@ -76,12 +56,13 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                 </h1>
             </div>
             <MainButtons
-                setIsMenuEnabled={setIsMenuEnabled}
-                changeActive={changeActive}
                 active={active}
-                resetSlider={resetSlider}
+                setActive={setActive}
                 mode={mode}
-                clearText={clearText}
+                setMode={setMode}
+                setIsMenuEnabled={setIsMenuEnabled}
+                setPosition={setPosition}
+                setText={setText}
             />
             <div
                 id="mode-group"

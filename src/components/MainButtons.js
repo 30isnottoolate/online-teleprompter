@@ -1,4 +1,26 @@
-const MainButtons = ({ setIsMenuEnabled, changeActive, active, resetSlider, mode, clearText }) => {
+const MainButtons = ({ active, setActive, mode, setMode, setIsMenuEnabled, setPosition, setText }) => {
+
+    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
+
+    const changeActive = () => {
+        if (active) {
+            setActive(false);
+        } else {
+            setActive(true);
+            setMode("read");
+            setIsMenuEnabled(false);
+        }
+    }
+
+    const resetSlider = () => {
+        setActive(false);
+        setPosition(7.5 * remValue);
+    }
+
+    const clearText = () => {
+        setText("");
+        setMode("edit");
+    }
 
     const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
 
