@@ -71,6 +71,10 @@ const Teleprompter = () => {
     }, [viewportWidth]);
 
     useEffect(() => {
+        setPosition(7.5 * remValue);
+    }, [fontSize, lineHeight, text, setPosition]);
+
+    useEffect(() => {
         localStorage.setItem("theme", theme);
         document.body.className = theme;
     }, [theme]);
