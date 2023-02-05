@@ -1,4 +1,7 @@
-const MainButtons = ({ changeActive, active, resetSlider, mode, clearText, changeIsMenuEnabled }) => {
+const MainButtons = ({ setIsMenuEnabled, changeActive, active, resetSlider, mode, clearText }) => {
+
+    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
+
     return (
         <div id="main-buttons-group">
                 <button

@@ -26,8 +26,6 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         setMode("edit");
     }
 
-    const changeIsMenuEnabled = () => setIsMenuEnabled(prevState => !prevState);
-
     const divPresence = viewportWidth < 44 ?
         isMenuEnabled ? "grid" : "none"
         : "grid";
@@ -77,13 +75,13 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     Online Teleprompter
                 </h1>
             </div>
-            <MainButtons 
-                changeActive={changeActive} 
-                active={active} 
-                resetSlider={resetSlider} 
-                mode={mode} 
-                clearText={clearText} 
-                changeIsMenuEnabled={changeIsMenuEnabled} 
+            <MainButtons
+                setIsMenuEnabled={setIsMenuEnabled}
+                changeActive={changeActive}
+                active={active}
+                resetSlider={resetSlider}
+                mode={mode}
+                clearText={clearText}
             />
             <div
                 id="mode-group"
