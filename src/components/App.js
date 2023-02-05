@@ -137,7 +137,7 @@ const Teleprompter = () => {
             />
             <Slider
                 mode={mode}
-                position={position} setPosition={setPosition}
+                position={position}
                 text={text} setText={setText}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
