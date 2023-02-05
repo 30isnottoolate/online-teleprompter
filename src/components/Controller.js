@@ -1,3 +1,5 @@
+import MainButtons from "./MainButtons";
+
 const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
     lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
@@ -75,33 +77,14 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     Online Teleprompter
                 </h1>
             </div>
-            <div id="main-buttons-group">
-                <button
-                    id="start-stop"
-                    className="main-buttons"
-                    onClick={changeActive} >
-                    {active ? "Stop" : "Start"}
-                </button>
-                <button
-                    id="reset"
-                    className="main-buttons"
-                    onClick={resetSlider}
-                    disabled={mode === "edit" ? true : false}>
-                    Reset
-                </button>
-                <button
-                    id="clear"
-                    className="main-buttons"
-                    onClick={clearText} >
-                    Clear
-                </button>
-                <button
-                    id="settings-button"
-                    className="main-buttons"
-                    onClick={changeIsMenuEnabled}>
-                    Settings
-                </button>
-            </div>
+            <MainButtons 
+                changeActive={changeActive} 
+                active={active} 
+                resetSlider={resetSlider} 
+                mode={mode} 
+                clearText={clearText} 
+                changeIsMenuEnabled={changeIsMenuEnabled} 
+            />
             <div
                 id="mode-group"
                 style={{ display: divPresence }} >
