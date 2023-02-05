@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
 import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
 
-const Slider = ({ mode, position, setPosition, text, setText,
+const Slider = ({ mode, position, text, setText,
     fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
-
-    const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
-
-    useEffect(() => {
-        setPosition(7.5 * remValue);
-    }, [fontSize, lineHeight, text, setPosition]);
 
     const handleTextChange = (e) => setText(e.target.value);
 
