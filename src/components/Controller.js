@@ -1,4 +1,6 @@
 import MainButtons from "./MainButtons";
+import ModeButtons from './ModeButtons';
+import Settings from './Settings';
 
 const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
     isMenuEnabled, setIsMenuEnabled, setPosition, viewportWidth, setText, fontSize, setFontSize,
@@ -21,11 +23,11 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
         }
     }
 
-    const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
+    /*const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
 
     const changeFontSize = (e) => setFontSize(e.target.value / remValue);
     const changeLineHeight = (e) => setLineHeight(e.target.value);
-    const changeTextSpeed = (e) => setTextSpeed(e.target.value);
+    const changeTextSpeed = (e) => setTextSpeed(e.target.value);*/
 
     const defaultSettings = () => {
         if (viewportWidth < 44) {
@@ -64,7 +66,23 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                 setPosition={setPosition}
                 setText={setText}
             />
-            <div
+            <ModeButtons
+                divPresence={divPresence}
+                changeMode={changeMode}
+                mode={mode}
+                theme={theme}
+                setTheme={setTheme}
+            />
+            <Settings
+                divPresence={divPresence}
+                fontSize={fontSize}
+                setFontSize={setFontSize}
+                lineHeight={lineHeight}
+                setLineHeight={setLineHeight}
+                textSpeed={textSpeed}
+                setTextSpeed={setTextSpeed}
+            />
+            {/*<div
                 id="mode-group"
                 style={{ display: divPresence }} >
                 <span>Current mode: </span>
@@ -109,7 +127,7 @@ const Controller = ({ active, setActive, mode, setMode, theme, setTheme,
                     value={textSpeed}
                     onChange={changeTextSpeed} />
                 <span>{textSpeed}</span>
-            </div>
+        </div>*/}
             <div
                 id="default-container"
                 style={{ display: divPresence }} >
