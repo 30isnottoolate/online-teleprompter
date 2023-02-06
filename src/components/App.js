@@ -70,7 +70,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         setPosition(7.5 * remValue);
-    }, [fontSize, lineHeight, text, remValue, setPosition]);
+    }, [fontSize, lineHeight, text, remValue]);
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
