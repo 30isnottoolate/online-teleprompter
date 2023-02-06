@@ -23,9 +23,7 @@ const Teleprompter = () => {
         if (!localStorage.getItem("theme")) {
             localStorage.setItem("theme", DEFAULT_THEME);
             return DEFAULT_THEME;
-        } else {
-            return localStorage.getItem("theme");
-        }
+        } else return localStorage.getItem("theme");
     });
 
     const [text, setText] = useState(() => {
@@ -44,21 +42,21 @@ const Teleprompter = () => {
                 localStorage.setItem("fontSize", DEFAULT_FONT_SIZE / remValue);
                 return DEFAULT_FONT_SIZE / remValue;
             }
-        } else return localStorage.getItem("fontSize");
+        } else return Number(localStorage.getItem("fontSize"));
     });
 
     const [lineHeight, setLineHeight] = useState(() => {
         if (!localStorage.getItem("lineHeight")) {
             localStorage.setItem("lineHeight", DEFAULT_LINE_HEIGHT);
             return DEFAULT_LINE_HEIGHT;
-        } else return localStorage.getItem("lineHeight");
+        } else return Number(localStorage.getItem("lineHeight"));
     });
 
     const [textSpeed, setTextSpeed] = useState(() => {
         if (!localStorage.getItem("textSpeed")) {
             localStorage.setItem("textSpeed", DEFAULT_TEXT_SPEED);
             return DEFAULT_TEXT_SPEED;
-        } else return localStorage.getItem("textSpeed");
+        } else return Number(localStorage.getItem("textSpeed"));
     });
 
     const textContainerRef = useRef(null);
@@ -68,11 +66,11 @@ const Teleprompter = () => {
         window.addEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
 
         return () => window.removeEventListener("resize", () => setViewportWidth(window.innerWidth / remValue));
-    }, [viewportWidth]);
+    }, [viewportWidth, remValue]);
 
     useEffect(() => {
         setPosition(7.5 * remValue);
-    }, [fontSize, lineHeight, text, setPosition]);
+    }, [fontSize, lineHeight, text, remValue, setPosition]);
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
@@ -103,15 +101,20 @@ const Teleprompter = () => {
         const emptyLines = (input) => (input.match(/^[ ]*$/gm) || []).length;
 
         let intervalID = null;
-        let noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * emptyLines(text);
-        let intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
+        let noEmptyLinesTextHeight;
+        let intervalValue;
+
+        if (textDisplayRef.current && text) {
+			noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * emptyLines(text);
+			intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
+		} else intervalValue = 18;
 
         if (active) {
             intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
         }
 
         return () => clearInterval(intervalID);
-    }, [active, viewportWidth, text, fontSize, lineHeight, textSpeed]);
+    }, [active, viewportWidth, text, fontSize, lineHeight, textSpeed, remValue]);
 
     useEffect(() => {
         if (textDisplayRef.current) {
@@ -119,7 +122,7 @@ const Teleprompter = () => {
                 setActive(false);
             }
         }
-    }, [position, fontSize, lineHeight]);
+    }, [position, fontSize, lineHeight, remValue]);
 
     return (
         <>
