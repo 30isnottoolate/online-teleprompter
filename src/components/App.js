@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
-import Controller from './Controller.js';
+import MainButtons from "./MainButtons";
+import ModeButtons from './ModeButtons';
+import Settings from './Settings';
 import Slider from './Slider.js';
 
 const DEFAULT_THEME = "dark"; // dark or light
@@ -105,9 +107,9 @@ const Teleprompter = () => {
         let intervalValue;
 
         if (textDisplayRef.current && text) {
-			noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * emptyLines(text);
-			intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
-		} else intervalValue = 18;
+            noEmptyLinesTextHeight = textDisplayRef.current.offsetHeight - remValue * fontSize * lineHeight * emptyLines(text);
+            intervalValue = (text.length / (noEmptyLinesTextHeight * READ_SPEED_COEF)) * (100 / textSpeed);
+        } else intervalValue = 18;
 
         if (active) {
             intervalID = setInterval(() => setPosition(position => position - 1), intervalValue);
@@ -124,20 +126,85 @@ const Teleprompter = () => {
         }
     }, [position, fontSize, lineHeight, remValue]);
 
+    const changeMode = () => {
+        if (mode === "edit") {
+            setMode("read");
+            setIsMenuEnabled(false);
+        } else {
+            setMode("edit");
+            setActive(false);
+            setPosition(7.5 * remValue);
+        }
+    }
+
+    const defaultSettings = () => {
+        if (viewportWidth < 44) {
+            setFontSize(2.5);
+        } else setFontSize(6.25);
+
+        setLineHeight(1.2);
+        setTextSpeed(100);
+    }
+
+    const gridTemplate = viewportWidth < 44 ?
+        isMenuEnabled ? "repeat(5, auto)" : "repeat(2, auto)"
+        : "auto";
+
+    const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "18.75rem" : "7.5rem";
+
+    const divPresence = viewportWidth < 44 ?
+        isMenuEnabled ? "grid" : "none"
+        : "grid";
+
     return (
         <>
-            <Controller
-                active={active} setActive={setActive}
-                mode={mode} setMode={setMode}
-                isMenuEnabled={isMenuEnabled} setIsMenuEnabled={setIsMenuEnabled}
-                setPosition={setPosition}
-                viewportWidth={viewportWidth}
-                theme={theme} setTheme={setTheme}
-                setText={setText}
-                fontSize={fontSize} setFontSize={setFontSize}
-                lineHeight={lineHeight} setLineHeight={setLineHeight}
-                textSpeed={textSpeed} setTextSpeed={setTextSpeed}
-            />
+            <div
+                id="controller"
+                className={active ? "transparent" : "visible"}
+                style={{
+                    gridTemplateRows: gridTemplate,
+                    height: controllerHeight
+                }}>
+                <div id="logo">
+                    <h1>
+                        Online Teleprompter
+                    </h1>
+                </div>
+                <MainButtons
+                    active={active}
+                    setActive={setActive}
+                    mode={mode}
+                    setMode={setMode}
+                    setIsMenuEnabled={setIsMenuEnabled}
+                    setPosition={setPosition}
+                    setText={setText}
+                />
+                <ModeButtons
+                    divPresence={divPresence}
+                    changeMode={changeMode}
+                    mode={mode}
+                    theme={theme}
+                    setTheme={setTheme}
+                />
+                <Settings
+                    divPresence={divPresence}
+                    fontSize={fontSize}
+                    setFontSize={setFontSize}
+                    lineHeight={lineHeight}
+                    setLineHeight={setLineHeight}
+                    textSpeed={textSpeed}
+                    setTextSpeed={setTextSpeed}
+                />
+                <div
+                    id="default-container"
+                    style={{ display: divPresence }} >
+                    <button
+                        id="default"
+                        onClick={defaultSettings} >
+                        Default
+                    </button>
+                </div>
+            </div>
             <Slider
                 mode={mode}
                 position={position}
