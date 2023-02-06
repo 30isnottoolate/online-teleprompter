@@ -14,7 +14,6 @@ const Slider = ({ mode, position, text, setText,
                     id="text-container"
                     ref={textContainerRef}
                     style={{
-                        height: "calc(100vh - 7.5rem)",
                         left: `${fontSize * 0.69}rem`,
                         width: `calc(100vw - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
