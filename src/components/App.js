@@ -6,6 +6,7 @@ import Settings from './Settings';
 import Slider from './Slider.js';
 
 const DEFAULT_THEME = "dark"; // dark or light
+const DEFAULT_TEXT_DIRECTION = "ltr" // ltr or rtl
 const DEFAULT_TEXT = "";
 const DEFAULT_FONT_SIZE = 100;
 const DEFAULT_LINE_HEIGHT = 1.2;
@@ -28,6 +29,15 @@ const Teleprompter = () => {
             return DEFAULT_THEME;
         } else return localStorage.getItem("theme");
     });
+
+	const [textDirection, setTextDirection] = useState(() => {
+		if (!localStorage.getItem("textDirection")) {
+			localStorage.setItem("textDirection", DEFAULT_TEXT_DIRECTION);
+			return DEFAULT_TEXT_DIRECTION;
+		} else {
+			return localStorage.getItem("textDirection") + "";
+		}
+	});
 
     const [text, setText] = useState(() => {
         if (!localStorage.getItem("text")) {
@@ -86,6 +96,10 @@ const Teleprompter = () => {
         localStorage.setItem("theme", theme);
         document.body.className = theme;
     }, [theme]);
+
+	useEffect(() => {
+		localStorage.setItem("textDirection", textDirection);
+	}, [textDirection]);
 
     useEffect(() => {
         localStorage.setItem("text", text);
@@ -198,6 +212,8 @@ const Teleprompter = () => {
                     mode={mode}
                     theme={theme}
                     setTheme={setTheme}
+					textDirection={textDirection}
+					setTextDirection={setTextDirection}
                 />
                 <Settings
                     divPresence={divPresence}
@@ -222,6 +238,7 @@ const Teleprompter = () => {
             </div>
             <Slider
                 mode={mode}
+				textDirection={textDirection}
                 position={position}
                 text={text} setText={setText}
                 fontSize={fontSize}
