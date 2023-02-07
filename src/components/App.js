@@ -10,6 +10,7 @@ const DEFAULT_TEXT = "";
 const DEFAULT_FONT_SIZE = 100;
 const DEFAULT_LINE_HEIGHT = 1.2;
 const DEFAULT_TEXT_SPEED = 100;
+const DEFAULT_TEXT_MARGIN = 0;
 const READ_SPEED_COEF = 0.0151; // char/ms
 
 const Teleprompter = () => {
@@ -61,6 +62,13 @@ const Teleprompter = () => {
         } else return Number(localStorage.getItem("textSpeed"));
     });
 
+	const [textMargin, setTextMargin] = useState(() => {
+		if (!localStorage.getItem("textMargin")) {
+			localStorage.setItem("textMargin", DEFAULT_TEXT_MARGIN.toString());
+			return DEFAULT_TEXT_MARGIN;
+		} else return Number(localStorage.getItem("textMargin"));
+	});
+
     const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
 
@@ -72,7 +80,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         setPosition(7.5 * remValue);
-    }, [fontSize, lineHeight, text, remValue]);
+    }, [fontSize, lineHeight, textMargin, text, remValue]);
 
     useEffect(() => {
         localStorage.setItem("theme", theme);
@@ -96,6 +104,10 @@ const Teleprompter = () => {
     }, [textSpeed]);
 
     useEffect(() => {
+        localStorage.setItem("textMargin", textMargin);
+    }, [textMargin]);
+
+    useEffect(() => {
         if (mode === "edit") textContainerRef.current.focus();
     }, [mode]);
 
@@ -116,7 +128,7 @@ const Teleprompter = () => {
         }
 
         return () => clearInterval(intervalID);
-    }, [active, viewportWidth, text, fontSize, lineHeight, textSpeed, remValue]);
+    }, [active, viewportWidth, text, fontSize, lineHeight, textSpeed, textMargin, remValue]);
 
     useEffect(() => {
         if (textDisplayRef.current) {
@@ -124,7 +136,7 @@ const Teleprompter = () => {
                 setActive(false);
             }
         }
-    }, [position, fontSize, lineHeight, remValue]);
+    }, [position, fontSize, lineHeight, textMargin, remValue]);
 
     const changeMode = () => {
         if (mode === "edit") {
@@ -144,6 +156,7 @@ const Teleprompter = () => {
 
         setLineHeight(1.2);
         setTextSpeed(100);
+        setTextMargin(0);
     }
 
     const gridTemplate = viewportWidth < 44 ?
@@ -194,6 +207,8 @@ const Teleprompter = () => {
                     setLineHeight={setLineHeight}
                     textSpeed={textSpeed}
                     setTextSpeed={setTextSpeed}
+					textMargin={textMargin}
+					setTextMargin={setTextMargin}
                 />
                 <div
                     id="default-container"
@@ -211,6 +226,7 @@ const Teleprompter = () => {
                 text={text} setText={setText}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
+				textMargin={textMargin}
                 textContainerRef={textContainerRef}
                 textDisplayRef={textDisplayRef}
             />
