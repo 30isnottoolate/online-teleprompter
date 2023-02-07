@@ -2,7 +2,7 @@ import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";
 
-const Slider = ({ mode, position, text, setText,
+const Slider = ({ mode, textDirection, position, text, setText,
     fontSize, lineHeight, textMargin, textContainerRef, textDisplayRef }) => {
 
     const handleTextChange = (e) => setText(e.target.value);
@@ -35,12 +35,15 @@ const Slider = ({ mode, position, text, setText,
                         width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
                         lineHeight: lineHeight,
-                        padding: `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`
+                        padding: `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`,
+                        direction: textDirection === "ltr" ? "ltr" : "rtl",
+                        unicodeBidi: textDirection === "ltr" ? "initial" : "bidi-override"
                     }}>
                     {text}
                 </pre>}
             {mode === "read" &&
                 <Marker
+                    textDirection={textDirection}
                     fontSize={fontSize}
                     lineHeight={lineHeight}
                     textMargin={textMargin}

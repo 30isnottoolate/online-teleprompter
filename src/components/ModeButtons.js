@@ -1,9 +1,10 @@
 import React from 'react';
 
 const ModeButtons =
-    ({ divPresence, changeMode, mode, theme, setTheme }) => {
+    ({ divPresence, changeMode, mode, theme, setTheme, textDirection, setTextDirection }) => {
 
         const changeTheme = () => setTheme(prevState => prevState === "light" ? "dark" : "light");
+        const changeTextDirection = () => setTextDirection(prevState => prevState === "ltr" ? "rtl" : "ltr");
 
         return (
             <div
@@ -22,6 +23,13 @@ const ModeButtons =
                     className="mode-buttons"
                     onClick={changeTheme} >
                     {theme === "dark" ? "Dark" : "Light"}
+                </button>
+                <span>Text direction: </span>
+                <button
+                    id="text-direction"
+                    className="mode-buttons"
+                    onClick={changeTextDirection} >
+                    {textDirection === "ltr" ? "Normal" : "Inverse"}
                 </button>
             </div>
         );
