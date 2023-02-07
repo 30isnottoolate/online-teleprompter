@@ -48,7 +48,7 @@ const Teleprompter = () => {
 
     const [fontSize, setFontSize] = useState(() => {
         if (!localStorage.getItem("fontSize")) {
-            if (viewportWidth < 44) {
+            if (viewportWidth < 46) {
                 localStorage.setItem("fontSize", 40 / remValue);
                 return 40 / remValue;
             } else {
@@ -164,7 +164,7 @@ const Teleprompter = () => {
     }
 
     const defaultSettings = () => {
-        if (viewportWidth < 44) {
+        if (viewportWidth < 46) {
             setFontSize(2.5);
         } else setFontSize(6.25);
 
@@ -173,13 +173,13 @@ const Teleprompter = () => {
         setTextMargin(0);
     }
 
-    const gridTemplate = viewportWidth < 44 ?
+    const gridTemplate = viewportWidth < 46 ?
         isMenuEnabled ? "repeat(5, auto)" : "repeat(2, auto)"
         : "auto";
 
-    const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "23rem" : "9.5rem";
+    const controllerHeight = viewportWidth < 46 && isMenuEnabled ? "23rem" : "9.5rem";
 
-    const divPresence = viewportWidth < 44 ?
+    const divPresence = viewportWidth < 46 ?
         isMenuEnabled ? "grid" : "none"
         : "grid";
 
@@ -196,6 +196,7 @@ const Teleprompter = () => {
                     <h1>
                         Online Teleprompter
                     </h1>
+                    <span>© {new Date().getFullYear()} Akos Varga, aka 30isnottoolate</span>
                 </div>
                 <MainButtons
                     active={active}
