@@ -1,13 +1,14 @@
 import React from 'react';
 
 const Settings =
-    ({ divPresence, fontSize, setFontSize, lineHeight, setLineHeight, textSpeed, setTextSpeed }) => {
+    ({ divPresence, fontSize, setFontSize, lineHeight, setLineHeight, textSpeed, setTextSpeed, textMargin, setTextMargin }) => {
 
         const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
 
         const changeFontSize = (e) => setFontSize(Number(e.target.value) / remValue);
         const changeLineHeight = (e) => setLineHeight(Number(e.target.value));
         const changeTextSpeed = (e) => setTextSpeed(Number(e.target.value));
+        const changeTextMargin = (e) => setTextMargin(Number(e.target.value));
 
         return (
             <div
@@ -40,9 +41,17 @@ const Settings =
                     onChange={changeTextSpeed}
                 />
                 <span>{textSpeed}</span>
+                <label htmlFor="text-margin">Margin: </label>
+                <input
+                    id="text-margin"
+                    className="settings-slider"
+                    type="range" min="0" max="40" step="1"
+                    value={textMargin}
+                    onChange={changeTextMargin}
+                />
+                <span>{textMargin}</span>
             </div>
         );
     }
 
 export default Settings;
-////////

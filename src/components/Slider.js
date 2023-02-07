@@ -3,7 +3,7 @@ import Marker from "./Marker";
 const PLACEHOLDER_TEXT = "Type something...";
 
 const Slider = ({ mode, position, text, setText,
-    fontSize, lineHeight, textContainerRef, textDisplayRef }) => {
+    fontSize, lineHeight, textMargin, textContainerRef, textDisplayRef }) => {
 
     const handleTextChange = (e) => setText(e.target.value);
 
@@ -17,7 +17,8 @@ const Slider = ({ mode, position, text, setText,
                         left: `${fontSize * 0.69}rem`,
                         width: `calc(100vw - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
-                        lineHeight: lineHeight
+                        lineHeight: lineHeight,
+                        padding: `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`
                     }}
                     value={text}
                     placeholder={PLACEHOLDER_TEXT}
@@ -33,7 +34,8 @@ const Slider = ({ mode, position, text, setText,
                         top: position,
                         width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
-                        lineHeight: lineHeight
+                        lineHeight: lineHeight,
+                        padding: `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`
                     }}>
                     {text}
                 </pre>}
@@ -41,6 +43,7 @@ const Slider = ({ mode, position, text, setText,
                 <Marker
                     fontSize={fontSize}
                     lineHeight={lineHeight}
+                    textMargin={textMargin}
                 />}
         </div>
     );
