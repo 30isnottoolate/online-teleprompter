@@ -182,8 +182,8 @@ button:active {
 }
 
 #text-container {
-    top: 7.5rem;
-    height: calc(100vh - 7.5rem);
+    top: 8rem;
+    height: calc(100vh - 8rem);
     padding: 0;
     outline: none;
     resize: none;
@@ -203,7 +203,7 @@ textarea::-webkit-input-placeholder {
 
 .text-marker {
     position: absolute;
-    top: 7.5rem;
+    top: 8rem;
     box-sizing: content-box;
     margin: 0;
     z-index: 1;

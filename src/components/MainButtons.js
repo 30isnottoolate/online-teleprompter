@@ -14,7 +14,7 @@ const MainButtons = ({ active, setActive, mode, setMode, setIsMenuEnabled, setPo
 
     const resetSlider = () => {
         setActive(false);
-        setPosition(7.5 * remValue);
+        setPosition(8 * remValue);
     }
 
     const clearText = () => {

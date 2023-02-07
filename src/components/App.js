@@ -89,7 +89,7 @@ const Teleprompter = () => {
     }, [viewportWidth, remValue]);
 
     useEffect(() => {
-        setPosition(7.5 * remValue);
+        setPosition(8 * remValue);
     }, [fontSize, lineHeight, textMargin, text, remValue]);
 
     useEffect(() => {
@@ -146,7 +146,7 @@ const Teleprompter = () => {
 
     useEffect(() => {
         if (textDisplayRef.current) {
-            if (position < (7.5 * remValue - textDisplayRef.current.offsetHeight + remValue * fontSize * lineHeight)) {
+            if (position < (8 * remValue - textDisplayRef.current.offsetHeight + remValue * fontSize * lineHeight)) {
                 setActive(false);
             }
         }
@@ -159,7 +159,7 @@ const Teleprompter = () => {
         } else {
             setMode("edit");
             setActive(false);
-            setPosition(7.5 * remValue);
+            setPosition(8 * remValue);
         }
     }
 
@@ -177,7 +177,7 @@ const Teleprompter = () => {
         isMenuEnabled ? "repeat(5, auto)" : "repeat(2, auto)"
         : "auto";
 
-    const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "18.75rem" : "7.5rem";
+    const controllerHeight = viewportWidth < 44 && isMenuEnabled ? "23rem" : "8rem";
 
     const divPresence = viewportWidth < 44 ?
         isMenuEnabled ? "grid" : "none"
