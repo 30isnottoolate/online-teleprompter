@@ -30,14 +30,14 @@ const Teleprompter = () => {
         } else return localStorage.getItem("theme");
     });
 
-	const [textDirection, setTextDirection] = useState(() => {
-		if (!localStorage.getItem("textDirection")) {
-			localStorage.setItem("textDirection", DEFAULT_TEXT_DIRECTION);
-			return DEFAULT_TEXT_DIRECTION;
-		} else {
-			return localStorage.getItem("textDirection") + "";
-		}
-	});
+    const [textDirection, setTextDirection] = useState(() => {
+        if (!localStorage.getItem("textDirection")) {
+            localStorage.setItem("textDirection", DEFAULT_TEXT_DIRECTION);
+            return DEFAULT_TEXT_DIRECTION;
+        } else {
+            return localStorage.getItem("textDirection") + "";
+        }
+    });
 
     const [text, setText] = useState(() => {
         if (!localStorage.getItem("text")) {
@@ -72,12 +72,12 @@ const Teleprompter = () => {
         } else return Number(localStorage.getItem("textSpeed"));
     });
 
-	const [textMargin, setTextMargin] = useState(() => {
-		if (!localStorage.getItem("textMargin")) {
-			localStorage.setItem("textMargin", DEFAULT_TEXT_MARGIN.toString());
-			return DEFAULT_TEXT_MARGIN;
-		} else return Number(localStorage.getItem("textMargin"));
-	});
+    const [textMargin, setTextMargin] = useState(() => {
+        if (!localStorage.getItem("textMargin")) {
+            localStorage.setItem("textMargin", DEFAULT_TEXT_MARGIN.toString());
+            return DEFAULT_TEXT_MARGIN;
+        } else return Number(localStorage.getItem("textMargin"));
+    });
 
     const textContainerRef = useRef(null);
     const textDisplayRef = useRef(null);
@@ -97,9 +97,9 @@ const Teleprompter = () => {
         document.body.className = theme;
     }, [theme]);
 
-	useEffect(() => {
-		localStorage.setItem("textDirection", textDirection);
-	}, [textDirection]);
+    useEffect(() => {
+        localStorage.setItem("textDirection", textDirection);
+    }, [textDirection]);
 
     useEffect(() => {
         localStorage.setItem("text", text);
@@ -213,8 +213,8 @@ const Teleprompter = () => {
                     mode={mode}
                     theme={theme}
                     setTheme={setTheme}
-					textDirection={textDirection}
-					setTextDirection={setTextDirection}
+                    textDirection={textDirection}
+                    setTextDirection={setTextDirection}
                 />
                 <Settings
                     divPresence={divPresence}
@@ -224,8 +224,8 @@ const Teleprompter = () => {
                     setLineHeight={setLineHeight}
                     textSpeed={textSpeed}
                     setTextSpeed={setTextSpeed}
-					textMargin={textMargin}
-					setTextMargin={setTextMargin}
+                    textMargin={textMargin}
+                    setTextMargin={setTextMargin}
                 />
                 <div
                     id="default-container"
@@ -239,12 +239,12 @@ const Teleprompter = () => {
             </div>
             <Slider
                 mode={mode}
-				textDirection={textDirection}
+                textDirection={textDirection}
                 position={position}
                 text={text} setText={setText}
                 fontSize={fontSize}
                 lineHeight={lineHeight}
-				textMargin={textMargin}
+                textMargin={textMargin}
                 textContainerRef={textContainerRef}
                 textDisplayRef={textDisplayRef}
             />
