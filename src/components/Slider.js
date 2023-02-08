@@ -1,3 +1,4 @@
+import React from 'react';
 import Marker from "./Marker";
 
 const PLACEHOLDER_TEXT = "Type something...";

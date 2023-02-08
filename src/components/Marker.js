@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Marker = ({ textDirection, fontSize, lineHeight, textMargin }) => {
 
     const markerStyle = () => {

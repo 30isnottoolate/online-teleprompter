@@ -1,3 +1,5 @@
+import React from 'react';
+
 const MainButtons = ({ active, setActive, mode, setMode, setIsMenuEnabled, setPosition, setText }) => {
 
     const remValue = parseInt(window.getComputedStyle(document.body).getPropertyValue("font-size"));
