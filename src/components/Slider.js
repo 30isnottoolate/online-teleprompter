@@ -8,6 +8,14 @@ const Slider = ({ mode, textDirection, position, text, setText,
 
     const handleTextChange = (e) => setText(e.target.value);
 
+    const displayPadding = () => {
+        if (textDirection === "ltr") {
+            return `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`;
+        } else {
+            return `0 ${textMargin}vw 0 calc(${textMargin}vw + ${fontSize * 0.69}rem)`;
+        }
+    }
+
     return (
         <div id="text-slider">
             {mode === "edit" &&
@@ -36,9 +44,8 @@ const Slider = ({ mode, textDirection, position, text, setText,
                         width: `calc(100vw - 0.75rem - ${fontSize * 0.69}rem)`,
                         fontSize: `${fontSize}rem`,
                         lineHeight: lineHeight,
-                        padding: `0 calc(${textMargin}vw + ${fontSize * 0.69}rem) 0 ${textMargin}vw`,
-                        direction: textDirection === "ltr" ? "ltr" : "rtl",
-                        unicodeBidi: textDirection === "ltr" ? "initial" : "bidi-override"
+                        padding: displayPadding(),
+                        transform: `scale(${textDirection === "ltr" ? "1" : "-1"}, 1)`
                     }}>
                     {text}
                 </pre>}
