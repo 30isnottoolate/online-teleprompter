@@ -9,6 +9,7 @@ const DEFAULT_THEME = "dark"; // dark or light
 const DEFAULT_TEXT_DIRECTION = "ltr" // ltr or rtl
 const DEFAULT_TEXT = "";
 const DEFAULT_FONT_SIZE = 100;
+const DEFAULT_SMALL_FONT_SIZE = 40;
 const DEFAULT_LINE_HEIGHT = 1.2;
 const DEFAULT_TEXT_SPEED = 100;
 const DEFAULT_TEXT_MARGIN = 0;
@@ -49,8 +50,8 @@ const Teleprompter = () => {
     const [fontSize, setFontSize] = useState(() => {
         if (!localStorage.getItem("fontSize")) {
             if (viewportWidth < 46) {
-                localStorage.setItem("fontSize", 40 / remValue);
-                return 40 / remValue;
+                localStorage.setItem("fontSize", DEFAULT_SMALL_FONT_SIZE / remValue);
+                return DEFAULT_SMALL_FONT_SIZE / remValue;
             } else {
                 localStorage.setItem("fontSize", DEFAULT_FONT_SIZE / remValue);
                 return DEFAULT_FONT_SIZE / remValue;
@@ -165,12 +166,12 @@ const Teleprompter = () => {
 
     const defaultSettings = () => {
         if (viewportWidth < 46) {
-            setFontSize(2.5);
-        } else setFontSize(6.25);
+            setFontSize(DEFAULT_SMALL_FONT_SIZE);
+        } else setFontSize(DEFAULT_FONT_SIZE);
 
-        setLineHeight(1.2);
-        setTextSpeed(100);
-        setTextMargin(0);
+        setLineHeight(DEFAULT_LINE_HEIGHT);
+        setTextSpeed(DEFAULT_TEXT_SPEED);
+        setTextMargin(DEFAULT_TEXT_MARGIN);
     }
 
     const gridTemplate = viewportWidth < 46 ?
